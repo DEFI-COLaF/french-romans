@@ -1,0 +1,920 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="../../../metadata/TEI/out/ODD.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title>MOUNY-ROBIN</title>
+            <author>George Sand</author>
+            <respStmt>
+               <resp>Mise à disposition du texte</resp>
+               <orgName ref="https://ebooks-bnr.com">Bibliothèque numérique romande</orgName>
+            </respStmt>
+            <respStmt>
+               <resp>Création du document TEI depuis l'HTML</resp>
+               <persName xml:id="LING">
+                  <surname>Ing</surname>
+                  <forename>Lucence</forename>
+                  <idno type="orcid">0000-0002-8742-3000</idno>
+               </persName>
+            </respStmt>
+            <principal>
+               <persName xml:id="BSAGOT">
+                  <surname>Sagot</surname>
+                  <forename>Benoît</forename>
+                  <idno type="orcid">0000-0001-8957-9503</idno>
+               </persName>
+            </principal>
+            <funder>Inria</funder>
+         </titleStmt>
+         <publicationStmt>
+            <idno>ROM-FR_George-Sand_MOUNY-ROBIN</idno>
+            <publisher ref="https://colaf.huma-num.fr">Corpus et Outils pour les Langues de France (COLaF)</publisher>
+            <date when="2025-05"/>
+            <availability>
+               <licence target="https://creativecommons.org/licenses/by/4.0/"/>
+            </availability>
+         </publicationStmt>
+         <sourceDesc>
+            <bibl>
+               <title>MOUNY-ROBIN</title>
+               <author>George Sand</author>
+               <date>1843</date>
+               <publisher>
+                  <orgName ref="https://ebooks-bnr.com">Bibliothèque numérique romande</orgName>
+                  <note>Note sur l'édition numérique en ligne (responsables de l'édition du texte, date de publication, sources employées) : Ce livre numérique a été édité par la <hi rendition="bold">
+                        <hi rendition="it">bibliothèque numérique romande</hi>
+                     </hi>   <hi rendition="bold">https://ebooks-bnr.com/</hi>
+                     <hi rendition="bold">en mars 2019.</hi>   — <hi rendition="bold">Élaboration :</hi> Ont participé à l’élaboration de ce livre numérique :
+Isabelle, Françoise. — <hi rendition="bold">Sources :</hi> Ce livre numérique est réalisé principalement d’après :
+Sand, George, <hi rendition="it">Le Poème de Myrza</hi>, in <hi rendition="it">La Revue des
+deux Mondes, quatrième série, tome premier</hi>, Paris, Londres, 01.01.1855, p. 473-497
+ainsi que, pour Mouny-Robin : <hi rendition="it">Œuvres complètes de George Sand, tome XIV</hi>,
+Paris, Perrotin, 1843. D’autres éditions ont été consultées en vue de l’établissement
+du présent texte. L’illustration de première page reprend le détail de : <hi rendition="it">Le
+Jardin des délices</hi>, huile sur bois (chêne), tryptique de Hieronymus Bosch, c. 1485-1505
+(Musée du Prado). Les illustrations dans le texte, de Maurice Sand, proviennent
+des <hi rendition="it">Œuvres illustrées de George Sand, tome 6</hi>, Paris, J. Hetzel,
+1854. </note>
+                  <note>Dans l'édition en ligne, ce texte est publié avec Le Poème de Myzra.</note>
+               </publisher>
+               <ptr target="https://ebooks-bnr.com/ebooks/html/sand_myrza_mouny_robin.htm"/>
+            </bibl>
+         </sourceDesc>
+         <extent/>
+      </fileDesc>
+      <profileDesc>
+         <creation>
+            <date>1841</date>
+         </creation>
+         <langUsage>
+            <language ident="stan">
+               <idno type="langue">stan1290</idno>
+               <idno type="script">latn</idno>
+               <name>Français</name>
+            </language>
+         </langUsage>
+         <textClass>
+            <keywords>
+               <term type="supergenre" rend="fiction">Fiction</term>
+               <term type="genre" rend="fiction-prose">Prose</term>
+               <term type="motclef" rend="fiction-prose-short-stories">Short story</term>
+            </keywords>
+         </textClass>
+      </profileDesc>
+      <encodingDesc>
+         <refsDecl>
+               <citeStructure unit="paragraph" match="//body/div/p" use="position()"/>
+         </refsDecl>
+      </encodingDesc>
+      <revisionDesc>
+         <change who="#LING" when="2025-05-25">Quelques modifications manuelles.</change>
+         <change when="2025-05-25" who="#LING">Création via XSLT du document TEI à partir du document HTML mis à disposition dans le cadre de la bibliothèque numérique romande</change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <head>MOUNY-ROBIN</head>
+       <div>     
+            <p>L’autre soir, à l’Opéra, j’étais placé entre un
+bourgeois de Paris qui disait, d’un air profond, au second acte du <hi rendition="it">Freyschütz :</hi>
+— Faut-il que ces Allemands soient simples pour croire à de pareilles sornettes !
+– Et un bon Allemand qui s’écriait avec indignation, en levant les yeux et les
+bras au ciel, c’est-à-dire au plafond : — Ces Français sont trop
+sceptiques ; ils ne conçoivent rien au merveilleux. – Le bourgeois
+scandalisé reprenait, s’adressant à sa femme : — Vraiment, ce hibou
+qui roule les yeux et bat des ailes est indigne de la scène française ! – L’Allemand
+outragé reprenait de son côté, s’adressant aux étoiles, c’est-à-dire aux quinquets :
+— Ce hibou bat des ailes à contre-mesure, et ses yeux regardent de travers.
+Il aurait besoin d’être soumis à l’opération du strabisme. Un public allemand ne
+souffrirait pas une pareille négligence dans la mise en scène ! — Les
+Allemands n’ont pas de goût, disait le bourgeois parisien. — Les Français
+n’ont pas de conscience, disait le spectateur allemand.</p>
+            <p>
+               <q>— À qui en ont ces messieurs ? demandai-je dans l’entr’acte
+à un spectateur cosmopolite qui se trouvait derrière moi, et qui, par
+parenthèse, est fort de mes amis. Comment se fait-il que la mauvaise tenue de
+ce hibou les occupe plus que l’esprit du drame, si admirablement rendu par la
+musique ?</q>
+            </p>
+            <p>
+               <q>— L’Allemand n’est pas content de certaines parties de
+l’exécution, me répondit le cosmopolite, et il s’en prend au décor. C’est bien
+de l’indulgence ou de la retenue de sa part. Quant au bourgeois, il va à l’Opéra
+pour voir le <hi rendition="it">spectacle</hi>, et il écoute la musique avec les yeux.</q>
+            </p>
+            <p>
+               <q>— Eh bien ! pour ne parler que du <hi rendition="it">spectacle</hi>,
+repris-je, que vous en semble ? Vous qui avez vu représenter ce chef-d’œuvre
+sur les premières scènes de l’Europe, trouvez-vous qu’il soit mal <hi rendition="it">monté</hi> (comme
+on dit) sur la nôtre ?</q>
+            </p>
+            <p>
+               <q>— Je ne suis pas du tout mécontent de ce sabbat, répondit-il,
+quoique j’y trouve trop peu de diablerie. Les apparitions du premier plan sont trop
+négligées, trop rares, et ne sont pas combinées à point avec les paroles du drame
+et avec l’intention du compositeur. Je n’ai pas vu le sanglier dont le
+rugissement sauvage est si bien exprimé dans la musique. S’il a passé, c’est si
+vite, que je ne l’ai point aperçu. À la place de l’apparition d’Agathe, je n’ai
+vu qu’un revenant quelconque. Ces squelettes et ces lutins sont beaucoup plus
+laids qu’il ne faut, et ne produisent pas du tout l’effet que produisent en
+Allemagne les chiens et les oiseaux innombrables qui s’élancent sur la scène. Les
+aboiements et le bruit des ailes sont pourtant indiqués dans l’orchestre, et c’est
+traiter un peu lestement la pensée de Weber que de lui retirer ses
+manifestations nécessaires. Voilà de quoi l’Allemand se plaint, et il a raison.
+Mais, ce qui pour moi fait compensation, c’est la beauté de ce paysage, la profondeur
+de ces toiles, la transparence de ces brouillards, ce je ne sais quoi d’artiste,
+de poétique et d’élevé qui préside à la composition du tableau. Sur aucune
+autre scène, on n’aurait mis autant de goût et d’intelligence à vous peindre le
+site en lui-même. Cette cascade dont le bruit sec et froid vous pénètre et vous
+glace, ces rideaux de brume qui s’éclaircissent et s’épaississent tour à tour, cela
+est vu et senti grandement par le décorateur. C’est que le Français a plus que
+l’Allemand le sentiment de la vraie beauté dans la nature, témoin les grands
+paysagistes que la France seule a produits depuis quelques années. Il y a une véritable
+renaissance de ce côté-là. L’Allemand voit les choses autrement ; il veut
+embellir la nature. Elle ne suffit pas à son imagination, il la peuple de fantômes,
+il donne aux objets réels eux-mêmes des formes fantastiques. La scène allemande
+essaie minutieusement de réaliser cette pensée du poète, et je crois qu’ici on
+a bien fait de ne pas le tenter. Il eût fallu sacrifier des effets de vérité à
+des effets de fantaisie, et peut-être eût-on perdu ces beaux effets sans
+atteindre au bizarre effrayant des effets contraires. En résumé, on peut dire que
+chaque peuple a son fantastique, et qu’il serait plus que difficile de concilier
+les deux.</q>
+            </p>
+            <p>
+               <q>— Si vous parlez de Paris et de Vienne, répondis-je, je
+vous accorde que ces différences sont tranchées ; mais si vous allez au cœur
+de notre peuple, si vous pénétrez dans nos provinces, au fond de nos campagnes,
+vous y trouverez des traditions si semblables à celles de l’Allemagne et de l’Écosse,
+que vous reconnaîtrez bien que ces poèmes populaires ont une source commune. Les
+poètes et les artistes des diverses nations s’en inspirent plus ou moins. L’Angleterre
+a Shakespeare et Byron, l’Allemagne Goethe, la Pologne Mickiewicz, l’Écosse Ossian
+et Walter Scott. Nous n’avons rien de semblable. Nos superstitions n’ont point
+eu d’illustre interprète et n’en auront pas ; l’esprit voltairien leur a porté
+le dernier coup, et notre moderne école fantastique n’a été qu’une pâle
+imitation de celles de nos voisins. Elle n’a rien produit de durable ; c’est
+une affaire de mode. Le Français des hautes classes et celui des classes moyennes
+rient des contes de revenants, et défendent aux valets d’en troubler la cervelle
+des enfants. L’Allemand éclairé n’y croit pas davantage, mais il n’en rit pas ;
+il les aime. Personne, à cet égard, n’a mieux peint l’esprit allemand que Henri
+Heine.</q>
+            </p>
+            <p>Quant à nous, continuai-je, nous avons lu les contes d’Hoffmann
+avec un plaisir extrême ; mais l’impression que nous en avons reçue n’a
+pas modifié nos habitudes de logique, notre impérieux besoin de la recherche
+des causes, et, par conséquent, cette raison un peu froide et railleuse qui
+scandalise l’Allemand. J’avoue que rien n’est plus risible que l’esprit fort
+qui veut tout expliquer sans rien savoir ; mais il y a une autre faiblesse
+qui consiste à s’interdire toute explication, bien qu’on ne manque pas de science,
+et qui n’est pas moins ridicule. Voilà, je crois, la différence entre les deux
+nations. Le Français, par amour du vrai, nie ou méconnaît toute vérité nouvelle ;
+l’Allemand, par amour du fabuleux, refuse de constater la vérité qui contrarie
+ses chimères. Mais, je vous le répète, descendez au cœur du peuple ; vous
+trouverez dans les grandes villes une population intelligente et active, qui, bien
+qu’initiée à la raison et à la logique des hautes classes, se souvient encore
+des traditions de son enfance et des contes de sa nourrice villageoise. Et si
+vous voulez aller au village, sans vous éloigner beaucoup de Paris, vous
+trouverez la fable de <hi rendition="it">Freyschütz</hi> aussi vivante dans les imaginations
+rustiques que vous venez de la voir sur ce théâtre.</p>
+            <p>
+               <q>— Je serais curieux de m’en assurer, dit mon cosmopolite.</q>
+            </p>
+            <p>
+               <q>— Eh bien ! repris-je, allez un peu causer avec
+les gardes forestiers et les bûcherons de la forêt de Fontainebleau. Ils vous
+raconteront qu’ils ont entendu, dans les nuits brumeuses de l’automne, passer la
+chasse fantastique du grand-veneur. Il en est même qui ont rencontré cette chasse
+terrible, ces biches épouvantées fuyant devant la meute bruyante, et ces grands
+lévriers dont la race est perdue et qui devancent la course des feux follets, et
+les chasseurs avec leurs trompes au son funèbre, et le grand-veneur en personne,
+avec son habit rouge, son panache flottant et son cheval noir comme la nuit, piaffant,
+reniflant, et faisant fumer la bruyère sous ses pieds autour de ces arbres
+séculaires qui forment, au plus obscur de la forêt, le <hi rendition="it">carrefour du Grand</hi>
+                  <hi rendition="it">-Veneur</hi>.</q>
+            </p>
+            <p>
+               <q>— J’ai souvent passé sous ces beaux arbres, répondit mon
+interlocuteur, lorsqu’ils étaient couverts de soleil et de verdure, et je n’aurais
+jamais cru que les morts osassent venir prendre leurs ébats aussi près de la
+capitale.</q>
+            </p>
+            <p>
+               <q>— Si vous voulez me promettre de ne pas vous moquer de
+moi, lui dis-je, je vais vous dire comme quoi j’ai été tout près de croire à
+une fable conforme, à bien des égards, à la tradition du <hi rendition="it">Freyschütz.</hi>
+               </q>
+            </p>
+            <p>
+               <q>— Je vous en prie, me dit-il, et je vous promets tout
+ce que vous voudrez.</q>
+            </p>
+            <p>
+               <q>— Eh bien ! continuai-je, franchissez en
+imagination une distance de quatre-vingts lieues. Nous voici au centre de la
+France, dans un vallon vert et frais, au bord de l’Indre, au bas d’un coteau
+ombragé de beaux noyers qui s’appelle la côte d’Urmont, et qui domine un
+paysage tout à fait doux à l’œil et à la pensée. Ce sont d’étroites prairies
+bordées de saules, d’aulnes, de frênes et de peupliers. Quelques chaumières
+éparses, l’Indre, ruisseau profond et silencieux, qui se déroule comme une
+couleuvre endormie dans l’herbe, et que les arbres pressés sur chaque rive
+ensevelissent mystérieusement sous leur ombre immobile ; de grandes vaches
+ruminant d’un air grave, des poulains bondissant autour de leur mère, quelque meunier
+cheminant derrière son sac sur un cheval maigre, et chantant pour adoucir l’ennui
+du chemin sombre et pierreux ; quelques moulins échelonnés sur la rivière,
+avec les nappes de leurs écluses bouillonnantes et leurs jolis ponts rustiques
+que vous ne franchiriez peut-être pas sans un peu d’émotion, car ils ne sont
+rien moins que solides et commodes ; quelque vieille filant sa quenouille,
+accroupie derrière un buisson, tandis que son troupeau d’oies maraude à la hâte
+dans le pré du voisin : voilà les seuls accidents de ce tableau rustique. Je
+ne saurais vous dire où en est le charme, et pourtant vous en seriez pénétré, surtout
+si, par une nuit de printemps, un peu avant les fauchailles, vous traversiez
+ces sentiers de la prairie où l’herbe, semée de mille fleurs, vous monte jusqu’aux
+genoux, où le buisson exhale les parfums de l’aubépine, et où le taureau mugit
+d’une voix désolée. Par une nuit de la fin d’automne, votre promenade serait
+moins agréable, mais plus romantique. Vous marcheriez dans les prés humides, sur
+une grande nappe de brume blanche comme l’argent. Il faudrait vous méfier des fossés
+grossis par le débordement de quelque bras de la rivière, et dissimulés par les
+joncs et les iris. Vous en seriez averti par l’interruption subite du croassement
+des grenouilles, dont votre approche troublerait le concert nocturne. Et si par
+hasard vous voyiez passer à vos côtés, dans le brouillard, une grande ombre
+blanche avec un bruit de chaînes, il ne faudrait pas vous flatter trop vite que
+ce fût un spectre ; car ce pourrait bien être la jument blanche de quelque
+fermier, traînant les fers dont ses pieds de devant sont entravés.</q>
+            </p>
+            <p>Le plus mystérieux et le plus pittoresque de ces moulins
+cachés sous le feuillage et abrités par le versant rapide du coteau d’Urmont (eh !
+mon Dieu, si quelque rustique habitant de notre Vallée Noire était là pour m’entendre
+prononcer ce nom, vous le verriez dresser l’oreille comme un cheval ombrageux),
+le plus joli, dis-je, de ces moulins, celui qui fut jadis le plus prospère et qui
+désormais ne l’est plus, c’est le moulin Blanchet ! Hélas ! il n’a
+pas toujours de l’eau maintenant dans les chaleurs de l’été, et pourtant jamais
+il n’en a manqué du temps que Mouny-Robin en était le meunier. Le moulin qui
+est au-dessus et celui de Lamballe, qui est au-dessous du même cours d’eau, en manquaient
+souvent. Les meuniers maudissaient la saison, ils tourmentaient en vain leurs
+écluses, ils épuisaient jusqu’à la dernière goutte de leurs réservoirs sans pouvoir
+contenter leurs clients ; et pendant ce temps la roue du moulin Blanchet
+tournait triomphante et chassait à grand bruit des flots d’écume. Mouny-Robin
+satisfaisait toutes ses pratiques, et voyait, comme de juste, venir à lui
+toutes celles de ses confrères malheureux ; c’est que Mouny-Robin était
+sorcier, c’est qu’il s’était donné à <hi rendition="it">Georgeon</hi>.</p>
+            <p>Qu’est-ce que Georgeon ? Qu’est-ce que Samiel ? Georgeon
+est un diable bien malin. Je n’ai jamais pu réussir à le voir, quoique j’y aie
+fait mon possible. Mais tant d’autres l’ont vu, que l’on ne saurait révoquer en
+doute son existence et son intervention dans les affaires de nos paysans. C’est
+lui qui donne de l’eau au moulin, de l’herbe au pré, de l’embonpoint aux
+bestiaux, et surtout du gibier au chasseur, car il est particulièrement l’Esprit
+de la chasse. Il trotte dans les guérets, il rôde dans les buissons, il
+contrarie les chasseurs maladroits, il gambade la nuit dans les prés avec les
+poulains, et, quand il parcourt la forêt, il est toujours accompagné d’au moins
+cinquante loups, lors même qu’il n’y en a pas un seul dans le pays. Lorsqu’on
+le surprend dans cet équipage, on s’assemble de tous les hameaux environnants
+pour faire une battue ; mais, quoi qu’on fasse, les loups deviennent
+invisibles, et le Malin se moque des chasseurs. C’est que les favoris de Georgeon
+ne se mêlent jamais de ces battues ; ils n’ont à discrétion des perdrix et
+des lièvres qu’à la condition de respecter les loups, et de les aider à se
+soustraire à la persécution. À quoi bon battre le bois et se donner tant de
+peine ? vous dira-t-on. Nous ne trouverons pas un seul loup aujourd’hui. C’est
+<hi rendition="it">un tel</hi> qui les a serrés dans sa grange. Allez-y, vous en trouverez là
+plus de cent à la crèche.</p>
+            <p>Ah ! combien de loups Mouny-Robin a ainsi hébergés et
+soustraits à nos recherches ! C’est grâce à lui, sans doute, que nous n’en
+avons jamais vu un seul à quatre lieues à la ronde, et, sous ce rapport, c’était
+un sorcier bien utile aux moutons du pays.</p>
+            <p>Mais un sorcier est toujours réputé méchant et nuisible, et
+Mouny-Robin fut toujours vu de mauvais œil. C’était pourtant la plus douce et la
+plus obligeante créature du monde. Lorsque je l’ai connu, il était encore jeune ;
+c’était un homme assez grand, mince, et d’une apparence délicate, quoique d’une
+force rare. Je me souviens qu’un jour, voulant traverser son pré pour éviter de
+faire un long détour, je me trouvai empêché par un très large fossé, rempli d’eau
+et de vase. Tout à coup je le vis sortir de derrière un saule. — Vous ne passerez
+pas là, mon enfant, me dit-il, c’est impossible. – Cela ne me paraissait pas
+impossible ; mais quand j’essayai de poser les pieds sur les pierres
+aiguës et glissantes qui, jetées çà et là dans le fossé, formaient une sorte de
+sentier, je trouvai la chose plus difficile que je ne l’avais pensé. J’étais
+avec un enfant plus jeune que moi, qui me dit : — N’essayez pas de
+passer, Mouny ne veut pas ; c’est un endroit ensorcelé par lui, et, quoiqu’il
+n’y ait pas beaucoup d’eau, s’il le veut, nous allons nous y noyer.</p>
+            <p>Comme nous étions en plein jour, et que je n’ai jamais eu
+peur à cette heure-là, je me moquai de cet avertissement, et j’appelai Mouny. — Viens
+ici, lui dis-je, et si tu es un brave sorcier, fais-moi passer par le meilleur
+chemin, puisque tu le connais. – Il fut très satisfait de cette déférence. — Je
+savais bien, dit-il d’un air triomphant, que vous ne passeriez pas là sans moi.
+– Et venant à moi, quoiqu’il fût très pâle et parût exténué par une fièvre qui
+le rongeait depuis plus d’un an, il me prit à la lettre entre ses mains, m’enleva
+en l’air comme il eût fait d’un lièvre, et, marchant sur les pierres jalonnées
+avec une parfaite sécurité malgré ses gros sabots, il me passa à l’autre bord
+sans broncher. — Toi, dit-il à l’autre, suis-moi, et ne crains rien. – L’autre
+passa, et ne trouva pas la moindre difficulté. Le sort était levé. Depuis ce
+jour, j’avais alors dix-sept ans, Mouny-Robin me témoigna toujours la plus
+grande amitié.</p>
+            <p>Si j’insiste sur la physionomie de ce personnage, ce n’est
+pas que je l’aie jamais cru sorcier ; mais c’est qu’il y avait en lui bien
+certainement quelque chose d’extraordinaire, sinon comme intelligence, du moins
+comme <hi rendition="it">faculté mystérieuse</hi>. Je vous expliquerai au fur et à mesure ce que
+j’entends par là. Il était, quant à l’extérieur, au langage et aux manières, bien
+différent de tous les autres paysans, quoiqu’il eût toujours vécu dans les mêmes
+conditions d’ignorance et d’apathie. Il s’exprimait avec une certaine
+distinction, quoiqu’avec une sorte de cynisme rabelaisien qui ne manquait pas
+de sel. Il avait la voix douce et l’accent agréable ; son humeur était
+enjouée, et ses allures familières sans être insolentes. Bien opposé aux
+habitudes de servilité craintive de ses pareils, qui ne rencontrent jamais un
+chapeau à forme haute sans soulever leur chapeau plat à grands bords, je ne
+crois pas qu’il ait jamais dit à personne <hi rendition="it">monsieur</hi> ou <hi rendition="it">madame</hi>, ni
+qu’il ait jamais porté la main à son bonnet pour saluer. Si le bourgeois lui
+plaisait, il l’appelait « mon ami, » sinon il l’appelait Gagneux, Daudon
+ou Massicot tout court. Il ne procédait pas ainsi par esprit d’insurrection. Vraiment,
+il ne s’occupait point de politique, ne lisait pas de journaux, et pour cause.
+La chasse l’absorbait tout entier, et j’ai toujours pensé que, comme chacun de
+nous a une certaine analogie de caractère, d’instincts et même de physionomie
+avec un animal quelconque (Lavater et Grandville l’ont assez prouvé), il y
+avait dans Mouny une grande tendance à rapprocher le type du chien de chasse de
+l’espèce humaine. Il en avait l’instinct, l’intelligence, l’attachement, la
+douceur confiante, et ce sens mystérieux qui met le chien sur la piste du gibier.
+Ceci mérite explication.</p>
+            <p>Quelques années après mon aventure du fossé (si aventure il
+y a), mon frère, étant venu se fixer dans le pays, fut pris d’une grande
+passion pour la chasse. C’était dans les commencements une passion malheureuse ;
+car, dans nos vallons coupés de haies et semés de pacages buissonneux, le
+gibier a tant de retraites que la chasse est fort difficile. Il ne suffit pas
+de savoir tirer juste, il faut connaître les habitudes du gibier, combattre ses
+tactiques par une tactique d’observation et d’expérience, développer en soi la
+ruse, la présence d’esprit, la patience, n’avoir pas de distraction, savoir tirer
+<hi rendition="it">au juger</hi> parmi les broussailles, ou viser si juste ou si vite, qu’un lièvre
+à la course apparaissant, pour une ou deux secondes, dans un <hi rendition="it">éclairci</hi> de
+quelques pieds d’ouverture, il tombe là, sans quoi il ira se <hi rendition="it">remiser</hi>
+dans des fourrés impénétrables. La perdrix aux champs n’est qu’une chasse d’enfant.
+Mais le lièvre au pacage est une chasse de maître. Il faut y être bien rompu, bien
+retors, et le plus habile chasseur de plaine y perdra son latin et sa poudre, à
+moins que, pour abréger de longues années d’apprentissage, il ne fasse intervenir
+Georgeon dans ses affaires.</p>
+            <p>
+               <q>— C’est encore là le plus sûr, nous disait notre ami le
+garde champêtre. Quant à moi, je n’ai pas la science qu’il faut pour ça ; et
+puis ça commence bien, mais ça finit toujours mal avec le <hi rendition="it">camarade</hi>. Voilà
+Mouny-Robin qui vous fera tuer du gibier tant que vous voudrez, et Dieu sait qu’il
+n’y a pas de plus fin braconnier en Europe et même en France ; mais, voyez-vous,
+il a après lui un vilain monsieur. Qu’il y prenne garde ! Un beau jour il
+trouvera son maître, et Georgeon finira par le <hi rendition="it">tourer</hi>
+                  <note xml:id="_ftnref1">, en berrichon,
+lutter ensemble ; , être terrassé dans la lutte.</note>.</q>
+            </p>
+            <p>Au sortir d’un régiment de hussards, on n’est pas superstitieux.
+Mon frère, voulant passer maître à la chasse, se fit l’écolier de Mouny, et moi,
+qui ai toujours aimé à battre les champs et les prés, à fumer mon cigare à l’ombre
+parfumée d’un noyer ou à lire un roman le long de la rivière, je me mis de la
+partie sans songer à mal.</p>
+            <p>
+               <q>— D’abord, mes enfants, nous dit Mouny-Robin, il faut
+se mettre en chasse à l’heure de la grand’messe, si ça ne vous fait pas trop de
+peine.</q>
+            </p>
+            <p>
+               <q>— À la bonne heure, pensai-je, voilà qui sent le
+sorcier. Nous partîmes pendant que la cloche du village appelait les fidèles à
+l’église et nous garantissait au moins contre des concurrents incommodes. — C’est
+trop tôt, nous dit Mouny-Robin. Laissez entrer tout le monde ; avant que
+le premier coup de fusil soit tiré, il ne nous faut rencontrer ni fille ni
+femme.</q>
+            </p>
+            <p>Malgré cette précaution, et quoique, pour complaire au sorcier
+dont les pratiques nous divertissaient, nous fissions de grands détours pour
+éviter de nous croiser dans notre marche avec quelque paysanne attardée se rendant
+à l’église, nous nous trouvâmes tout à coup face à face avec une bergère qui gardait
+ses moutons à l’angle d’une prairie. — Comme elle ne marche pas, dit mon
+frère, cela ne peut pas s’appeler une rencontre. — C’est égal, dit Mouny, c’est
+bien mauvais, et la chance est contre nous. Nous allons être deux heures sans
+rien tuer.</p>
+            <p>Deux heures se passèrent en effet sans que nous pussions
+abattre une seule pièce. C’était à qui de nous tirerait le plus mal, et Mouny n’était
+pas le moins maladroit. — Puisque tu es sorcier, lui dis-je, au lieu de
+conjurer les mauvaises rencontres, tu devrais avoir des balles qui portent
+juste. On dit que Georgeon en donne à ses amis.</p>
+            <p>
+               <q>— Est-ce que vous croyez à Georgeon, vous autres ?
+dit-il en haussant les épaules. Pour moi, je regarde tout ce qu’on en dit comme
+autant de contes pour faire peur aux enfants.</q>
+            </p>
+            <p>
+               <q>— Mais pourquoi évites-tu les rencontres ? pourquoi
+chasses-tu pendant la messe ? pourquoi crois-tu aux mauvaises chances ?</q>
+            </p>
+            <p>
+               <q>— Vois-tu, mon petit, reprit-il, tu parles sans savoir.
+La chasse est une chose à laquelle personne ne connaît rien. Il y a des chances,
+voilà tout ce que je peux t’en dire. T’ai-je averti que nous aurions deux mauvaises
+heures ? Elles sont passées ; regarde au soleil. Eh bien ! voilà
+une pie sur un arbre. Je vais la tirer, et la chance sera pour nous ; si
+je la manquais, nous ferions aussi bien de rentrer ; nous manquerions à
+tout coup.</q>
+            </p>
+            <p>Il abattit la pie. — Ne la ramassez pas, n’y touchez
+pas, nous dit-il. Cela n’est bon qu’à lever un sort.</p>
+            <p>
+               <q>— Ah çà, la bergère était donc sorcière ? lui
+demandai-je.</q>
+            </p>
+            <p>
+               <q>— Non, me dit-il, il n’y a ni sorciers ni sorcières ;
+mais elle avait une mauvaise influence. Ce n’est pas sa faute. L’influence est
+détruite ; à présent nous allons trouver deux perdrix à la Croix-Blanche.</q>
+            </p>
+            <p>
+               <q>— Comment ! à une demi-lieue d’ici ? dit mon
+frère.</q>
+            </p>
+            <p>
+               <q>— Pardine, je le sais bien, répliqua Mouny ; mâle et
+femelle ! Vous pouvez rencontrer qui vous voudrez à présent, et tirer
+comme vous pourrez, vous tuerez ces perdrix-là, je vous les donne.</q>
+            </p>
+            <p>Nous les trouvâmes à la place qu’il avait désignée, et mon
+frère les tua.</p>
+            <p>
+               <q>— Maintenant, dit-il, nous ne verrons rien d’ici à une
+demi-heure : regardez à vos montres.</q>
+            </p>
+            <p>La demi-heure écoulée : — Je veux tuer un lièvre, dit-il ;
+il faut que je le tue, ce diable de lièvre !</p>
+            <p>Le lièvre passa à une telle distance, que mon frère cria :
+— Ne tirez pas, c’est inutile ; il est hors de portée.</p>
+            <p>Le coup partit.</p>
+            <p>
+               <q>— Il a beau être sorcier, dit mon frère, il n’abattra pas
+celui-là. C’est tout à fait impossible.</q>
+            </p>
+            <p>
+               <q>— Cherche, Rageot ! dit Mouny à son chien.</q>
+            </p>
+            <p>
+               <q>— Oui, oui, cherche ! dit mon frère en riant.</q>
+            </p>
+            <p>Rageot partit comme un trait ; c’était un bien bel épagneul
+blanc avec deux taches jaunes. Il passa la rivière à la nage, car Mouny avait
+tiré par-dessus ; il flaira les buissons, poussa un cri de joie, fit vaillamment
+le plongeon dans les épines, et rapporta le lièvre criblé du gros plomb de
+Mouny.</p>
+            <p>Ma foi, je commençais à croire que Georgeon s’était mis de
+la partie.</p>
+            <p>Il nous fit plusieurs autres prédictions qui se réalisèrent
+comme les précédentes. Au retour, notre chien Médor tomba en arrêt sur une compagnie
+de perdrix.</p>
+            <p>
+               <q>— Laissez-moi tirer là-dessus, dit Mouny en retenant
+mon frère. Il nous en faut au moins six.</q>
+            </p>
+            <p>Il en abattit sept.</p>
+            <p>
+               <q>— Bah ! c’est trop facile ! disait-il tranquillement
+en les ramassant.</q>
+            </p>
+            <p>
+               <q>— S’il n’est point sorcier ou diable, disais-je à mon frère
+en revenant, il a du moins quelque pratique secrète que je ne devine pas.</q>
+            </p>
+            <p>
+               <q>— Bah ! répondit mon frère, il a tant étudié les
+allures du gibier qu’il en connaît toutes les remises et toutes les habitudes. Les
+animaux libres ont une vie très régulière, et il s’agit de suivre une de leurs
+journées pour savoir l’emploi de tous leurs autres jours.</q>
+            </p>
+            <p>
+               <q>— Mais le lièvre atteint hors de portée ?</q>
+            </p>
+            <p>
+               <q>— C’est que son fusil porte extraordinairement loin comparativement
+aux nôtres.</q>
+            </p>
+            <p>
+               <q>— Mais les sept perdrix ?</q>
+            </p>
+            <p>
+               <q>— C’est qu’il a tiré au plus serré du bataillon. Je ne lui
+conteste pas d’être plus adroit que nous.</q>
+            </p>
+            <p>
+               <q>— Mais ses prédictions ?</q>
+            </p>
+            <p>
+               <q>— Le hasard aide les gens heureux, et le bonheur est aux
+insolents.</q>
+            </p>
+            <p>
+               <q>— Avec cela on expliquerait toutes choses, et pourtant
+il me semble que cela n’explique rien.</q>
+            </p>
+            <p>
+               <q>— Attends à demain ou à la semaine prochaine, pour voir
+comment notre sorcier gouvernera le hasard. Tu verras qu’il ne tombera pas
+toujours aussi juste qu’aujourd’hui, et que son Georgeon lui fera <hi rendition="it">fiasco</hi>
+plus d’une fois.</q>
+            </p>
+            <p>Nous nous mîmes à chasser presque tous les jours avec Mouny.
+Nous y trouvions un plaisir extrême : mon frère, parce qu’il lui faisait rencontrer
+beaucoup de gibier ; moi, parce qu’il nous conduisait dans les sites les plus
+charmants et les plus ignorés de la Vallée Noire. Il continuait son système de
+conjuration contre les influences pernicieuses, et ses prédictions. Je dois
+dire, pour la vérité du fait, que celles-ci ne se réalisèrent pas toujours
+parfaitement, mais qu’elles se réalisèrent vingt-cinq fois sur trente ; et
+cela dura non quatre jours, mais quatre ans et demi, pendant lesquels Mouny-Robin
+prit sur nous, comme chasseur, et peut-être aussi un peu comme sorcier, un
+ascendant que peu à peu nous cessâmes de combattre. En étudiant avec lui les
+mœurs du gibier, nous pûmes bientôt nous convaincre que ses habitudes n’étaient
+pas aussi régulièrement tracées que nous l’avions cru d’abord. Plus nous
+examinions notre guide, plus nous remarquions en lui une sorte de divination à
+l’endroit de la chasse, dont il semblait parfois travaillé et tourmenté comme d’une
+souffrance, comme d’une maladie. Il n’était pas charlatan le moins du monde, il
+n’employait aucune manigance cabalistique, et, s’il croyait à Georgeon, il s’en
+cachait bien et n’en parlait pas volontiers. Un phénomène qui s’opérait en Mouny-Robin
+nous mit, quoique vaguement, sur la voie de ce que je crois aujourd’hui devoir
+approcher de la vérité.</p>
+            <p>Un jour (nous avions apparemment toutes les mauvaises
+influences contre nous), nous fîmes quatre ou cinq mortelles lieues de pays
+sans rien rencontrer. Il semblait que tout le gibier eût été frappé d’une plaie
+d’Égypte, car nous ne pûmes pas seulement viser une alouette. Rageot était d’une
+humeur de dogue, et Médor nous regardait d’un air mélancolique. Deux ou trois
+fois, pour tromper leur ennui, ils tombèrent en arrêt sur des hérissons et sur
+des couleuvres ; mais Mouny nous interdisait de tirer sur ces viles
+bestioles, prétendant que cela gâtait la main. Au dire des paysans, il protégeait,
+par malice de sorcier, les mauvaises bêtes vouées au diable ; car Georgeon
+livre au chasseur qu’il protège le plus noble gibier, à condition qu’il
+respectera les animaux immondes dont il fait sa société dans les nuits de
+sabbat : les chouettes, les chats sauvages, les crapauds, les serpents, les
+renards, les loutres, les chauves-souris, les loups, etc. Ce jour-là, Mouny-Robin
+était triste, accablé, plus pâle qu’à l’ordinaire, et nonchalant comme il ne l’était
+pas souvent.</p>
+            <p>
+               <q>— Écoutez, nous dit-il, il faut changer tout cela, je
+vais me <hi rendition="it">retirer</hi>.</q>
+            </p>
+            <p>
+               <q>— Qu’appelles-tu te <hi rendition="it">retirer ?</hi> lui dis-je. Quitter
+la chasse ?</q>
+            </p>
+            <p>
+               <q>— Non, mon fils, répondit-il : je vais me retirer dans
+ce taillis ; vous, vous allez suivre par en bas, et vous n’entrerez pas
+sous bois ; autrement, tout ira mal.</q>
+            </p>
+            <p>Nous étions habitués à ses façons de parler : nous
+suivîmes la lisière du bois, comptant qu’il allait en faire sortir quelque lièvre
+de sa connaissance ; mais il n’en sortit rien, et au bout d’un quart d’heure
+nous le vîmes revenir à nous dans un état singulier de trouble et d’agitation. Il
+tremblait de tous ses membres et semblait brisé de fatigue, de souffrance ou d’effroi.
+Sa blouse était souillée de terre, ses cheveux remplis de brins de mousse, comme
+s’il eût été terrassé dans une lutte violente. Son front était ruisselant de
+sueur, et cependant ses dents claquaient de froid. — Eh bien ! qu’est-ce
+donc, s’écria mon frère, est-ce que tu viens de te colleter avec l’autorité ?</p>
+            <p>Nous n’avions entendu aucun bruit ; mais, comme nous
+chassions la plupart du temps sans port d’armes et hors de saison, en
+véritables apprentis braconniers, nous pouvions faire la rencontre de quelque
+gendarme, garde champêtre, ou de tout autre fonctionnaire public, et nous nous
+apprêtions à prendre le large, lorsque Mouny nous arrêta. — Rien, rien !
+nous dit-il d’une voix éteinte, ce n’est rien ! – Et faisant un grand
+effort, il se secoua comme un homme qui chasse une vision, essuya son front, empoigna
+son fusil d’une main qui tremblait encore, et il s’écria comme s’il eût été inspiré :
+— Tout va bien, mes amis ! nous allons faire une bonne chasse ! Il
+y aura de beaux coups de fusil. – Puis, reprenant son air doux et narquois :
+— Vous, dit-il à mon frère, vous ne rentrerez pas sans plumes à la maison ;
+et quant à toi, ajouta-t-il en me regardant, tu verras pour la première fois de
+ta vie tomber deux lièvres du même coup.</p>
+            <p>
+               <q>— Et qui fera ce beau coup ? demandai-je.</q>
+            </p>
+            <p>
+               <q>— Quelqu’un qui s’appelle Mouny-Robin et qui se moque
+de bien des choses, répondit-il en secouant la tête.</q>
+            </p>
+            <p>
+               <q>— Et quand cela arrivera-t-il ? demanda mon frère.</q>
+            </p>
+            <p>
+               <q>— Tout de suite, répondit-il. – Un lièvre parut, il l’ajusta
+et l’abattit.</q>
+            </p>
+            <p>
+               <q>— Cette fois il n’y en a qu’un, dit mon frère.</q>
+            </p>
+            <p>
+               <q>— Entrez dans le buisson, répondit Mouny ; s’il n’y
+en a pas deux, je veux que celui-là soit le dernier que je tuerai de ma vie.</q>
+            </p>
+            <p>Nous cherchâmes dans le buisson, il y avait un second lièvre
+dont il avait cassé les reins du même coup qui avait fracassé la cervelle du
+premier.</p>
+            <p>
+               <q>— Comment diable avais-tu fait pour le voir ? lui dis-je ;
+tu as de meilleurs yeux que nous !</q>
+            </p>
+            <p>
+               <q>— Des yeux ? répondit-il. Mettez telles lunettes
+que vous voudrez, et si vous voyez ce que je vois, je vous fais cadeau de mon
+chien et de ma femme. Allons, allons, vous, dit-il à mon frère, armez votre
+fusil, la plume n’est pas loin.</q>
+            </p>
+            <p>Au bout de cent pas, nous trouvâmes une bande de canards
+sauvages. Mouny s’abstint de tirer. Mon frère en tua plusieurs, et revint
+souper avec son carnier plein de canards, de bécasses et de pluviers.</p>
+            <p>
+               <q>— Quand je vous ai dit que vous ne rentreriez pas sans
+plumes ! observa Mouny ; je savais bien que vous ne tueriez pas de
+perdrix. C’est égal, vous ne devez pas être mécontent. Pour ma peine, vous
+allez me promettre, si nous rencontrons ma femme, de ne pas lui dire un mot de
+ce que nous avons fait à la chasse.</q>
+            </p>
+            <p>Il nous avait tant de fois recommandé le secret à cet
+égard-là, que nous n’avions garde d’y manquer. Il ne cachait point à sa femme
+le gibier qu’il avait tué ; mais de quelle façon il l’avait abattu, avec
+quel plomb, à quelle heure, en quel endroit, et après quelles paroles, voilà
+les mystères qu’il fallait lui faire, chaque jour, le serment de ne pas révéler.
+Il ne chassait guère qu’avec nous, et c’était une grande marque de confiance qu’il
+nous donnait. — Tu te crois donc sorcier, que tu caches ainsi ton savoir-faire ?
+lui disions-nous. — Non, répondait-il ; mais il ne faut pas qu’une
+femme sache rien des affaires de la chasse : cela porte malheur.</p>
+            <p>Cet homme offrait dans ses idées au premier abord un
+singulier assemblage de crédulité et de scepticisme. Il ne croyait vraiment pas
+au diable, ni aux mauvais esprits, mais à la fatalité, ou plutôt à des
+influences pernicieuses ou bienfaisantes, qu’aucune science, je crois, n’a
+jamais reconnues, faute peut-être de les avoir observées. Il eût été bien
+important que nous fussions assez éclairés pour examiner et reconnaître les
+propriétés qu’il attribuait à certains corps, à certaines émanations, à
+certains contacts. Quand on l’examinait de près, on voyait bien qu’il n’était
+pas superstitieux le moins du monde, et qu’il agissait en vertu d’une théorie physique
+vraie ou fausse. Les résultats étaient la plupart du temps si extraordinaires, que,
+selon toute apparence, il ne se trompait pas souvent dans l’application. Je ne
+crois pas qu’il ait cherché à remonter aux causes ; mais il avait certainement
+une science d’instinct ou d’observation. D’où la tenait-il ? Nous n’avons
+jamais pu le savoir, et j’ignore s’il le savait lui-même. À cet égard ses
+réponses étaient évasives, et comme il était plus fin que nous, nous n’en
+tirâmes jamais rien.</p>
+            <p>Toutes les fois que la chasse était mauvaise, il <hi rendition="it">se retirait</hi>
+(c’était son expression), c’est-à-dire qu’il se cachait à nos regards, soit
+dans un buisson, soit dans un fossé, soit dans quelque masure déserte, et qu’après
+y être resté un certain temps, il en sortait pâle, anéanti, frissonnant, respirant
+et marchant à peine, mais nous annonçant des rencontres et des victoires
+superbes qui se réalisaient toujours, et quelquefois avec une exactitude de
+détails qui tenait du prodige. Un jour, nous résolûmes de l’observer pour voir s’il
+avait quelque pratique secrète d’une superstition grossière, ou s’il préparait
+quelque jonglerie. Nous feignîmes de nous éloigner, et nous fîmes un détour
+pour le surprendre. Nous parvînmes jusqu’à lui sous le taillis avec des précautions
+tout à fait inutiles, car l’état où nous le trouvâmes ne lui permettait pas de
+nous voir et de nous entendre. Il était étendu à terre, et paraissait en proie à
+une angoisse inexplicable. Il se tordait les bras, faisait craquer ses jointures,
+bondissait sur le dos comme une carpe, respirait avec effort, la face pâmée et
+les yeux éteints. Nous crûmes qu’il était épileptique ; mais les choses n’en
+vinrent pas là. Il n’eut ni écume à la bouche, ni rugissements, ni atonie. Ce
+fut une simple attaque de nerfs, une agitation convulsive, un étouffement pénible,
+quelque chose de plus douloureux qu’effrayant à voir, et dont il se tira en
+moins de cinq minutes. Nous le vîmes ensuite se relever peu à peu, s’étendre, se
+calmer, se <hi rendition="it">ravoir</hi>, comme on dit, et rester là encore quelques minutes, comme
+partagé entre une grande fatigue et une sorte de bien-être. Quand il quitta la place
+pour nous chercher, nous allâmes le rejoindre par un assez long détour, afin de
+ne pas l’inquiéter, et il dit à mon frère en l’abordant : — Aujourd’hui,
+si je ne m’en mêle pas, vous ne tuerez rien.</p>
+            <p>En effet, mon frère tira plus de douze coups de fusil dont
+pas un seul ne porta. — Je suis donc le dernier des maladroits ! s’écria-t-il
+en frappant la terre de la crosse de son arme. Ah çà, maître Mouny, tâchez de me
+désensorceler.</p>
+            <p>
+               <q>— C’est bien aisé, mon ami, répondit Mouny de sa voix
+douce et agréable. Donnez-moi cela. De quel côté voulez-vous que je charge ?</q>
+            </p>
+            <p>Il chargea le côté gauche qu’on lui indiqua, et mon frère
+chargea l’autre.</p>
+            <p>
+               <q>— Avec celui-ci, dit Mouny en montrant celui qu’il venait
+de charger, vous ne manquerez pas.</q>
+            </p>
+            <p>
+               <q>— Et avec l’autre ? dit mon frère.</q>
+            </p>
+            <p>
+               <q>— Avec l’autre vous ne toucherez pas, répondit-il.</q>
+            </p>
+            <p>Un vanneau passa, mon frère l’abattit ; puis une grive,
+et il la manqua. Le coup chargé par Mouny avait porté, l’autre avait été casser
+une branche dix pieds trop haut.</p>
+            <p>
+               <q>— Et maintenant chargez le côté droit, dit mon frère. Il
+est possible que par là le fusil soit meilleur.</q>
+            </p>
+            <p>
+               <q>— À votre aise, dit Mouny-Robin. Il chargea le droit, et
+mon frère le gauche. Avec le droit il toucha, avec le gauche il ne toucha point.
+L’épreuve fut répétée, toujours en sens contraire, cinq ou six fois de suite, et
+le résultat fut toujours celui que Mouny avait annoncé. À la septième : — Cette
+fois, dit-il, vous allez tuer avec votre charge et manquer avec la mienne ;
+je suis fatigué.</q>
+            </p>
+            <p>Le fait suivit et confirma la prédiction.</p>
+            <p>De pareilles expériences ne pouvaient pas être attribuées
+obstinément au hasard et à l’adresse. Mouny était parfois lui-même d’une
+maladresse incroyable, et il n’en paraissait ni surpris ni humilié. <hi rendition="it">Je sentais
+cela</hi>, disait-il. Il n’y mettait pas d’autre amour-propre. Il était beau
+chasseur comme on est beau joueur. Nous lui accordions d’être plus exercé et plus
+habile que nous ; cela ne suffisait pas pour expliquer les faits de
+divination véritable dont nous étions témoins tous les jours. Il me serait
+difficile de traduire nettement l’impression que ces faits produisirent sur
+nous à la longue. Il n’y a pas de fait si remarquable auquel on ne s’accoutume,
+et pourtant rien au monde n’est aussi difficile à vérifier et à constater qu’un
+fait de ce genre. Les continuelles et consciencieuses recherches de certains
+partisans du magnétisme, qui ne sont ni des fous ni des charlatans, ont bien
+assez prouvé que la simple conquête d’un fait patent et incontestable peut être
+l’œuvre de toute une vie. Mais ce qu’il y a de plus étrange, c’est que ce fait
+à peine conquis entre d’emblée dans les esprits simples et droits sans y
+produire ni étonnement ni inquiétude. Je ne sais pas si les savants s’y
+soumettent aussi facilement j’en doute. Leur orgueil a trop à faire pour s’accommoder
+des découvertes qui bouleversent leurs théories. Quant à moi, qui n’avais
+aucune théorie à perdre et aucune science à contrarier, j’ai été témoin d’un de
+ces faits après lesquels le doute n’est plus possible. J’avais vu Mouny-Robin
+exercer la faculté de seconde vue, ou d’odorat porté jusqu’à la puissance
+canine, sans être bien convaincu qu’il y eût dans l’humanité des instincts aussi
+exceptionnels et outrepassant les bornes connues de nos facultés communes. Dix
+ans plus tard, je jouai aux cartes avec une somnambule dont la vue semblait tout
+à fait interceptée ; et, quoiqu’elle fît des prodiges, je me repentis, en
+sortant, d’avoir signé le procès-verbal. Il me vint des méfiances que je n’avais
+pas eues tout de suite. Je soupçonnai sa mère d’être de connivence avec elle pour
+duper le public, et je me demandai avec une partie des opposants, quoique le
+bandeau fût impénétrable, si les contorsions qu’elle avait faites n’avaient pas
+un peu décollé l’appareil en dessous.</p>
+            <p>Mais, il y a deux mois, j’ai vu chez un médecin que je sais
+être un homme de conscience et de vertu, et que de nombreuses supercheries ont
+rendu plus méfiant que nous tous, une autre somnambule qui, malgré plusieurs bandeaux
+impénétrables, et privée de l’assistance de tout compère, exerça la faculté de
+la vue avec autant de netteté que je puis le faire avec d’excellents yeux et
+une clarté splendide. Cette fois, je poussai mon examen du fait jusqu’à la
+minutie, jusqu’à l’insolence, et je pourrais citer des détails qui ne
+laisseraient aucune prise au soupçon de jonglerie. Je suis donc persuadé, je
+suis donc sûr aujourd’hui, autant qu’il est donné à l’homme de l’être d’un fait
+d’expérience personnelle attentive et lucide, que certains individus de notre
+espèce peuvent voir (et partant pourquoi pas entendre, pourquoi pas odorer ?)
+dans des conditions où l’exercice des sens serait interdit à la généralité des
+autres individus. Eh bien ! depuis ce temps, j’admire ma tranquillité. Il
+m’avait semblé qu’un tel fait me paraîtrait surnaturel, qu’il bouleverserait ma
+raison, qu’il me rendrait accessible à toutes les billevesées du monde, et je
+craignais d’arriver à la certitude que je cherchais. Voilà qu’il se trouve que
+rien de pareil ne s’est opéré en moi. Je ne crois à aucune puissance
+surnaturelle, et je me dis, avec tous ceux qui ont assisté à l’épreuve, qu’il y
+a sans doute dans la nature bien d’autres secrets non encore révélés, qui de
+longtemps ne seront pas explicables. Que dis-je, de longtemps ! ne le
+seront-ils pas toujours ? Un fait constaté entraîne-t-il autre chose qu’une
+analyse des effets et des causes saisissables ? et n’y a-t-il pas
+au-dessus de ces causes saisissables une cause première qui est le secret même
+de la Divinité ? Qui nous dira comment le blé pousse et comment l’homme
+est conçu ? Nous voyons bien germer et poindre un brin d’herbe dans le sein
+d’une graine, nous voyons bien un enfant naître du flanc de sa mère ; mais
+la puissance de la vie, mais la perpétuation et le renouvellement de l’être, mais
+ces propriétés impérissables de l’esprit et de la matière, d’où viennent-elles ?</p>
+            <p>Quand on aura analysé l’œil de l’extatique, quand on aura
+trouvé dans ses nerfs, ou dans sa rétine, ou dans son cerveau, une faculté
+particulière de voir à travers les obstacles et en dépit des distances, que
+saura-t-on ? Ce qu’on savait il y a trois mille ans : c’est qu’il y a
+des pythies, des devins, des augures, des visionnaires et des prophètes qui n’exploitent
+pas tous la crédulité des hommes, et qui sont vraiment mus par une puissance intime
+et incontestable. On ne dira plus : C’est Apollon, c’est Isis, c’est Jehovah,
+c’est Magog qui parle. Les savants diront : C’est un fait naturel qui se
+produit. Mais, en vérité, à qui donc remonte la puissance dont ce fait émane ?
+Ne sera-ce pas jusqu’à Dieu, aussi bien que tous les faits de la vie dans l’univers ?</p>
+            <p>Ce n’est donc pas dans une étude matérielle de la cause
+première qu’il faut chercher le progrès. Ce progrès ne sera jamais qu’une confirmation
+de plus en plus éclatante et universelle de la foi en Dieu, conquête primitive,
+durable, éternellement modifiable et perfectible de l’humanité. Mais ce qu’il
+appartient à la science humaine d’analyser et d’expliquer par les moyens qui lui
+sont propres, c’est d’une part le mécanisme des causes naturelles procédant des
+causes divines, et de l’autre le mécanisme des effets naturels procédant des unes
+et des autres. La science fera ce progrès quand les savants auront vu un assez
+grand nombre de faits nouveaux et incontestables pour rougir de leur
+scepticisme, comme ils rougiraient aujourd’hui de leur naïveté, si naïfs ils
+pouvaient être.</p>
+            <p>J’en étais là de mon explication, quand je vis que
+mon auditeur cosmopolite était profondément endormi. Je l’avais magnétisé, sans
+le vouloir, par mes réflexions sur le magnétisme. Ce fut à grand’peine que je l’arrachai
+au sommeil délicieux que lui procurait ma logique, pour lui faire entendre le
+final admirable du <hi rendition="it">Freyschütz</hi>. Quand le rideau fut tombé : — Vous
+me devez la fin de l’histoire de Mouny-Robin-Gaspard et de Georgeon-Samiel, me
+dit-il en passant son bras sous le mien ; nous irons nous asseoir à Tortoni,
+et vous me l’achèverez.</p>
+            <p>
+               <q>— Je ne saurais, répondis-je, la raconter dans un lieu
+livré à des influences aussi contraires à l’effet qu’elle doit produire, et je
+crois, pour continuer le système de mon braconnier extatique, qu’au contact de
+toutes ces élégances parisiennes, je perdrais la mémoire des jours de ma
+jeunesse campagnarde. Venez avec moi en plein air ; la lune donne sur les
+toits, et je réussirai peut-être à sortir de mon explication…</q>
+            </p>
+            <p>
+               <q>— Je vous en dispense, dit le cosmopolite qui
+commençait à en avoir assez. Il me semble que j’ai compris, tout en dormant ;
+vous attribuez à votre homme une sorte de seconde vue qui s’exerçait à la
+chasse, et qui se produisait chez lui au moyen de certaines crises nerveuses. Vous
+pouviez dire cela en deux mots ; je ne suis pas tellement sceptique, que
+je n’accepte cette donnée préférablement à bien d’autres.</q>
+            </p>
+            <p>
+               <q>— Eh bien ! repris-je, puisque ma tâche à cet
+égard est terminée, la fin de l’histoire viendra bien vite. Le garde champêtre
+et toutes les têtes fortes de l’endroit nous avaient bien prédit que cela
+finirait mal, et que Georgeon <hi rendition="it">tourerait</hi> son compère Mouny. Un beau soir,
+comme la lune brillait au ciel, Mouny alla comme de coutume lever la pelle de
+son moulin ; mais, au moment où l’eau s’élançait et mettait la roue en mouvement,
+Georgeon, qui était mécontent de lui (sans doute parce qu’il ne le trouvait pas
+assez méchant pour un homme voué au diable), le poussa par derrière, l’enfonça
+dans l’eau la tête la première et le fit passer sous la roue de son moulin, d’où
+il sortit suffoqué, brisé et frappé à mort. On le trouva de l’autre côté du
+moulin, échoué sur l’herbe du rivage, disloqué, immobile et près d’expirer. Il passa
+pourtant six mois dans le lit, où il finit par succomber aux lésions profondes
+que la roue du moulin avait faites à la poitrine et à la moelle épinière. — On
+te l’avait bien prédit, mon pauvre homme, lui disait sa femme à son lit de mort,
+que Georgeon finirait par te tourer !</q>
+            </p>
+            <p>
+               <q>— Il n’y a pas de Georgeon qui tienne ! répondit
+le moribond. Je ne saurai jamais comment cela m’est arrivé ; pas plus, ajouta-t-il,
+que je n’ai su le reste !</q>
+            </p>
+            <p>Le fait est que l’accident tragique du pauvre Mouny n’a
+jamais été bien expliqué. Il faut être non pas maladroit, mais bien déterminé
+au suicide pour passer ainsi par la pelle de nos moulins. Il vous suffirait de
+voir celui de Mouny pour vous convaincre qu’il faut s’y lancer ou y être
+précipité avec une grande force, la tête en avant, pour ne pas pouvoir se
+retenir aux ais du pont, quelle que soit la force de l’eau. Tout s’expliquerait
+si Mouny eût été ivre ; mais il ne s’enivra pas, je crois, une seule fois
+dans sa vie. Il avait horreur du bruit et de l’odeur des tavernes, et, quand il
+s’y asseyait un instant, il en sortait en disant : « La tête me sonne ! »
+Je n’ai pas vu un autre paysan aussi délicatement organisé qu’il l’était à
+certains égards.</p>
+            <p>
+               <q>— N’avait-il pas un ennemi, un héritier, un rival ?
+me dit mon auditeur complaisant.</q>
+            </p>
+            <p>
+               <q>— Hélas ! il y en avait plus d’un, répondis-je. Jeanne
+Mouny était jolie comme un ange, et d’une délicatesse d’organisation aussi
+exceptionnelle que celle de son mari. Elle était petite, fluette, et blanche
+comme les narcisses de son pré. Vivant toujours à l’ombre des grands arbres qui
+croissent dans cette région fraîche et touffue, elle avait préservé son cou et
+ses bras des morsures du soleil, et, quand elle était vêtue le dimanche d’une
+robe blanche et d’un tablier à fleurs, elle ressemblait plus à une villageoise
+d’opéra qu’à une meunière du Berry. Pour rester dans le vrai, ce n’était ni l’une
+ni l’autre ; mais c’était mieux ; c’était quelque chose de fin, de propret
+et de charmant, avec une voix douce et des manières gracieuses. Il semblerait
+que ce rapport d’organisation eût dû les rendre précieux l’un à l’autre. J’ai
+la douleur de vous avouer que madame Mouny préférait à son époux un gros garçon
+de moulin, noir, rauque et crépu, auquel Mouny ne témoigna jamais la moindre
+jalousie. Ceci est encore une particularité du caractère de notre ami. Il n’avait
+aucun préjugé sauvage sur l’honneur conjugal. Il ne se croyait obligé ni de
+haïr, ni d’injurier, ni de battre, ni d’étrangler sa femme, parce qu’elle lui
+était infidèle. Il nous parla souvent de sa position prétendue ridicule, et la
+manière dont il l’envisageait ne l’était nullement. — Jeanne est beaucoup
+plus jeune que moi, disait-il ; elle est jolie, et je l’ai toujours
+négligée. Que voulez-vous ? Je l’aime de tout mon cœur, mais j’aime encore
+mieux la chasse. La chasse, voyez-vous, mes enfants, celui qui s’y adonne ne
+peut pas s’adonner à autre chose. Si vous êtes amoureux, si vous êtes jaloux, faites-moi
+cadeau de vos fusils et de vos chiens, car vous ne serez jamais que de mauvais
+chasseurs.</q>
+            </p>
+            <p>Si bien qu’en raisonnant avec cet esprit de justice, il eut
+pour sa femme les procédés qu’un grand seigneur du temps de Louis XV aurait
+eus pour la sienne. Il n’est donc pas présumable qu’il ait été assassiné par son
+rival. Cela n’est venu à l’esprit de personne. Jeanne ne pouvait que perdre à
+la mort de son mari.</p>
+            <p>
+               <q>— Alors que présumez-vous de cette mort ?</q>
+            </p>
+            <p>
+               <q>— Je présume que Mouny était somnambule ou cataleptique
+d’une certaine façon, et qu’il a été surpris par la crise extatique au moment
+où il levait la pelle de son moulin. Quoi qu’il en soit, sa fin a été
+mystérieuse comme sa vie, et il n’est aucun de nos paysans qui ne l’attribue
+encore aujourd’hui à une lutte avec l’esprit malin, le diable chasseur, le
+terrible Georgeon de la Vallée Noire. Je vous disais que notre peuple des
+campagnes possède son fantastique tout comme un autre, et que les Allemands n’en
+ont pas le monopole. Je pourrais vous conter d’après eux des histoires encore
+plus effrayantes, mais il est trop tard pour cette nuit. Bonsoir.</q>
+            </p>
+            <p>FIN.</p>
+         </div>
+      </body>
+   </text>
+</TEI>
