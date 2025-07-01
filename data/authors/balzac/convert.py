@@ -27,21 +27,29 @@ with open('dates.tsv') as f:
     dates = {}
     reader = csv.DictReader(f, delimiter='\t')
     for row in reader:
-    	if row["date"].strip():
-	        dates[row["filename"]] = row["date"]
+        if row["date"].strip():
+            dates[row["filename"]] = row["date"]
 
 def rename(filename: str) -> str:
     filename = f"{dates[filename]}_balzac_"+filename.split('FC-')[-1]
     return filename
 
+rename = re.compile("([0-9]+)_([a-z]+)_(.*)")
+
 for file in glob.glob("*.xml"):
     with open(file) as f:
         data = f.read().replace("&nbsp;", " ")
-    if file in dates and file.startswith("balzac-"):
+    if file not in dates:
+        if rename.findall(file):
+            dest = rename.sub(r"\2_\1_\3", file)
+            shutil.move(file, dest)
+            shutil.move(file.replace(".xml", ".txt"), dest.replace(".xml", ".txt"))
+        continue
+    if file.startswith("balzac-"):
         dest = rename(file)
         shutil.move(file, dest)
     else:
-    	dest = file
+        dest = file
     xml = et.parse(io.BytesIO(data.encode('utf-8')))
     string = str(xsl(xml))
     with open(dest.replace(".xml", ".txt"), "w") as f:
