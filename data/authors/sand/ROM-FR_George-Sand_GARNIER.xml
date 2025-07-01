@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
+	schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="../../../metadata/TEI/out/ODD.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title>GARNIER</title>
+            <author>George Sand</author>
+            <respStmt>
+               <resp>Mise à disposition du texte</resp>
+               <orgName ref="https://ebooks-bnr.com">Bibliothèque numérique romande</orgName>
+            </respStmt>
+            <respStmt>
+               <resp>Création du document TEI depuis l'HTML</resp>
+               <persName xml:id="LING">
+                  <surname>Ing</surname>
+                  <forename>Lucence</forename>
+                  <idno type="orcid">0000-0002-8742-3000</idno>
+               </persName>
+            </respStmt>
+            <principal>
+               <persName xml:id="BSAGOT">
+                  <surname>Sagot</surname>
+                  <forename>Benoît</forename>
+                  <idno type="orcid">0000-0001-8957-9503</idno>
+               </persName>
+            </principal>
+            <funder>Inria</funder>
+         </titleStmt>
+         <publicationStmt>
+            <idno>ROM-FR_George-Sand_GARNIER</idno>
+            <publisher ref="https://colaf.huma-num.fr">Corpus et Outils pour les Langues de France (COLaF)</publisher>
+            <date when="2025-05"/>
+            <availability>
+               <licence target="https://creativecommons.org/licenses/by/4.0/"/>
+            </availability>
+         </publicationStmt>
+         <sourceDesc>
+            <bibl>
+               <title>GARNIER</title>
+               <author>George Sand</author>
+               <date>1834</date>
+               <publisher>
+                  <orgName ref="https://ebooks-bnr.com">Bibliothèque numérique romande</orgName>
+                  <note>Note sur l'édition numérique en ligne (responsables de l'édition du texte, date de publication, sources employées) : Ce livre numérique a été édité par la <hi rendition="bold">
+                        <hi rendition="it">bibliothèque numérique romande</hi>
+                     </hi>   <hi rendition="bold">https://ebooks-bnr.com/</hi>
+                     <hi rendition="bold">en juin 2022.</hi>   — <hi rendition="bold">Élaboration :</hi> Ont participé à l’élaboration de ce livre numérique :
+Isabelle, Françoise. — <hi rendition="bold">Sources :</hi> Ce livre numérique est réalisé principalement d’après :
+<hi rendition="it">George Sand illustré par Thierry Johannot et Maurice
+Sand</hi>, Paris Michel Lévy frères (Librairie nouvelle), 1856, p. 87-96 et
+<hi rendition="it">Œuvres complètes de George Sand, La Coupe, Lupo Liverani, Le Toast, Garnier,
+Le Contrebandier, La Rêverie à Paris</hi>, Paris, Calmann Lévy, 1876, p. 233-260.
+D’autres éditions ont été consultées en vue de l’établissement du présent texte.
+L’Illustration de première page, <hi rendition="it">La scène du balcon
+de Roméo et Juliette</hi>, huile sur toile, 1884, a été peinte par Franck
+Bernard Dicksee (Southampton City Art Gallery). </note>
+                  <note>Dans la publication numérique, Garnier est plublié avec le texte intitulé La Marquise, que nous avons retrait du présent document.</note>
+               </publisher>
+               <ptr target="https://ebooks-bnr.com/ebooks/html/sand_marquise_garnier.html"/>
+            </bibl>
+         </sourceDesc>
+         <extent/>
+      </fileDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="stan">
+               <idno type="langue">stan1290</idno>
+               <idno type="script">latn</idno>
+               <name>Français</name>
+            </language>
+         </langUsage>
+         <textClass>
+               <keywords>
+                  <term type="supergenre" rend="fiction">Fiction</term>
+                  <term type="genre" rend="fiction-prose">Prose</term>
+                  <term type="motclef" rend="fiction-prose-short-stories">Short story</term>
+               </keywords>
+         </textClass>
+      </profileDesc>
+      <encodingDesc>
+         <refsDecl>   
+            <citeStructure unit="paragraph" match="//body/div/p" use="position()" delim=" "/>        
+         </refsDecl>
+      </encodingDesc>
+      <revisionDesc>
+         <change who="#LING" when="2025-05-25">Quelques modifications manuelles</change>
+         <change when="2025-05-25" who="#LING">Création via XSLT du document TEI à partir du document HTML mis à disposition dans le cadre de la bibliothèque numérique romande</change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <head>GARNIER</head>
+  <div>
+            
+            <p>Il y a peu de traits dans l’histoire des peuples et dans les
+révolutions des empires qui puissent servir de matière à plus d’observations
+philosophiques et psychologiques, que la manière dont mon ami Garnier devint l’amant
+de sa maîtresse.</p>
+            <p>Mon ami Garnier est un homme probe et doux, de mœurs pures, modéré
+en politique, plein d’idées neuves et de respect pour les convenances. C’est un
+garçon si rangé, qu’on ne l’entend jamais parler de ses dettes ; point
+fanfaron, point querelleur, incapable de battre son domestique s’il en avait un,
+conservant d’ailleurs un juste orgueil, principalement ses jours de barbe. Son
+extrême propreté et la douceur de ses manières ont toujours suffi, dans le petit
+cercle où il vit, pour lui faire pardonner certain penchant pour l’école
+satanique. Je ne pense cependant pas qu’il se soit jamais cru absolument lord
+Byron ; mais il s’en faut de si peu que ce n’est pas la peine d’en parler,
+et la chose est d’ailleurs si simple et commune à tant de gens, que je ne vois
+pas trop pourquoi il aurait eu la modestie de s’en priver.</p>
+            <p>Non seulement il est très facile aujourd’hui d’être lord
+Byron, mais il est encore très difficile de ne pas l’être. Je ne parle pas des
+littérateurs ; s’en abstenir leur est entièrement impossible. La raison en
+est aisée à concevoir, puisqu’on ne saurait faire un livre sans que les
+journaux en parlent, et que les journaux ne sauraient en parler sans mentionner
+Byron. Le nom de Byron se trouve dans tous les articles littéraires imprimés
+depuis 1826. Mais, pour ne parler que de la vie privée, cette sorte de
+personnage indispensable dans les coteries se propage de jour en jour dans tous
+les rangs de la société. Le dandysme a commencé, il est vrai, en Angleterre par
+exiger que pour remplir ce rôle on boitât d’une manière assez marquée ; mais
+on a aujourd’hui des idées plus tolérantes à cet égard, il suffit qu’on s’en
+reconnaisse la vocation ; et dans le cas où elle serait faible, un valet
+de chambre bien appris doit, en vous donnant vos gants et votre canne, ajouter
+avec respect : « Et que Monsieur ait la bonté de se rappeler qu’il
+imite Byron. »</p>
+            <p>Garnier, selon ses facultés, avait fait à tout cela quelques
+petites modifications. La tranquillité de ses occupations et l’éloignement de son
+quartier ne lui permettaient pas de mépriser les hommes. J’ai dit, d’autre part,
+qu’il avait peu de dettes ; il ne faisait point de vers et détestait les
+ours et les pintades. En outre, chose importante, il n’avait pas de maîtresse, point
+de gastrite et possédait un seul habit. En un mot, il n’avait de notablement
+commun avec le noble lord que les bras et les jambes, encore ne puis-je parler
+que d’une seule, Garnier étant d’une construction ordinaire et très ferme sur
+ses deux larges pieds.</p>
+            <p>Quoi qu’il en soit, le sort avait réservé à cette douce et
+bonne créature un des coups les plus frappants. Deux incidents d’une faible
+importance déterminèrent l’épisode le plus critique de sa vie. Ceux qui liront
+cette histoire verront qu’il était né pour justifier deux proverbes opposés l’un
+à l’autre, et ils ne s’en étonneront pas, puisque tous les proverbes ont leur
+contraire et que la sagesse des nations s’arrange toujours, quand on la
+consulte, pour répondre oui et non tout à la fois, comme, par exemple : « Qui
+ne risque rien n’a rien. – Tout vient à point à qui sait attendre. » Bien
+supérieure en cela aux oracles anciens, qui ne répondaient jamais ni oui ni non.</p>
+            <p>*     *     *</p>
+            <p>Certain jour d’un hiver rigoureux, Garnier, tristement
+appuyé sur son poêle éteint, réfléchissait aux choses de ce monde. Il regardait
+sa provision de bûches, ses livres, sa table de nuit, sa chandelle et son habit
+vert, et il disait, en secouant la tête, que ce n’était pas là le véritable
+bonheur.</p>
+            <p>Cette provision, il faut l’avouer, était mesquine, ces
+livres étaient noirs et enfumés, cette chandelle était mourante, et l’habit
+vert était attendrissant. Oui, si vous l’aviez vu, étalé sur cette chaise à demi
+rompue, avec ces plis misérables et cet air de bonhomie, lui, l’habit de fête, l’étendard
+du dimanche ! Les parements vous eussent navré, le collet vous eût tiré
+des larmes des yeux.</p>
+            <p>Ce n’est pas que Garnier n’eût l’âme bien placée : il
+ne s’aveuglait sur quoi que ce soit et n’accordait pas à un tailleur plus de
+respect qu’il ne devait. Mais, s’il est vrai que tout homme ait ses mauvais
+jours, n’est-il pas vrai aussi que la pauvreté n’est pas faite pour les adoucir ?
+La mélancolie, qui se glisse dans les palais sous la forme d’un melon mal
+digéré ou d’un roman nouveau, est, dit-on, tout aussi réelle que celle qui
+habite le toit d’un pauvre diable sous la forme d’un mémoire de blanchisseuse
+ou d’un bouton de moins à un unique habit. Cela n’est ni juste ni charitable. Pour
+les riches, la tristesse n’est que la sœur de l’ennui ; elle entre parfois
+par les balcons entr’ouverts, pour traverser, comme un fil de la bonne Vierge, les
+longues galeries ; elle s’accroche un instant aux lambris sculptés et aux
+angles des cadres gothiques. Puis l’aboiement d’un chien, le parfum d’une tasse
+de thé la chassent et la dissipent dans les airs. Mais elle étend dans les
+mansardes, de la porte à la fenêtre, sa longue toile d’araignée ; de
+faibles rayons de soleil glissent à peine et se font jour entre ces réseaux
+épais ; un insecte y danse çà et là au milieu d’un flot de poussière, tandis
+que le monstre aux pattes velues s’y accroche et s’y suspend dans tous les sens.</p>
+            <p>Garnier ouvrit sa fenêtre. Hélas ! quel beau froid il
+faisait ! comme s’il y avait de beaux froids quand on compte ses bûches !
+le soleil était sans nuages, la terre sèche et nette comme une assiette d’étain.
+Les voitures allaient et venaient. Et lui aussi il aimait la vie ! et lui
+aussi il était abonné à un cabinet de lecture, et il était plein de désirs, plein
+de sève et de fermentation, comme un drame moderne !</p>
+            <p>Et lui aussi il voyait passer dans ses rêves des légions de
+frêles jeunes filles, des armées d’êtres angéliques et des Andalouses
+échevelées, tout comme un autre ! lui aussi il comprenait profondément le
+moyen âge, et lui aussi il était l’homme de son temps, l’expression du siècle, comme
+une préface nouvelle ! et lui aussi il était allé aux Italiens la veille ;
+il y avait vu un ange de lumière en robe orange.</p>
+            <p>Voilà ce qui navrait Garnier. Oh ! si à cette heure d’angoisse
+il avait eu une voiture de remise, il serait allé au bois de Boulogne, et il
+aurait cherché dans la foule bigarrée et étincelante, dans la grande foule aux
+mille têtes, la robe orange de sa beauté. Oh ! s’il avait eu un coursier
+espagnol, à la fauve crinière, longue et effilée comme de la soie, au pied
+sonore, à l’œil sanglant ; s’il avait eu un traîneau russe, avec ses
+grelots d’argent et ses mules bondissantes sous les panaches empourprés ! une
+gondole vénitienne avec son falot sur sa tête de cygne et ses deux rames bleues
+comme deux ailes palpitantes ! oh ! s’il avait eu un dromadaire
+égyptien, un renne lapon, un éléphant siamois ! oh ! s’il avait eu
+cent écus !</p>
+            <p>Damnation ! tous les jours le même dîner, le même poêle,
+le même habit vert ! La vie est-elle donc si douce ? le suicide n’est-il
+pas un des besoins du siècle, une des conséquences de la littérature ?</p>
+            <p>Garnier regardait de travers un pistolet accroché à son mur,
+un pauvre pistolet sans pierre, incapable de nuire à personne.</p>
+            <p>« Sombre et fidèle ami, s’écria le jeune homme, que renfermes-tu
+dans tes entrailles de fer ? Quel secret mystérieux de doute et de terreur
+diras-tu à l’oreille de l’homme assez osé pour te poser sur sa tempe amaigrie ?
+Quelle vérité terrible jaillira dans l’éclair de ta vieille batterie noircie
+par la fumée ?</p>
+            <p>
+               <q>— Hélas ! semblait répondre modestement le pauvre
+pistolet sans fiel, je n’ai plus de ressort, et toi-même tu n’as pas de poudre.
+Une détonation funeste, si tu me tournais contre toi, annoncerait l’instant de
+ma propre mort et non de la tienne ; les éclats que tu recevrais dans le
+nez et dans les yeux seraient les seules marques que je pourrais te laisser de
+mes longs et cruels services.</q>
+            </p>
+            <p>N’est-ce pas quelque chose de hideux que l’influence d’un
+quantième ? Quand je pense que le premier du mois Garnier voltigeait sur
+les prairies émaillées, semblable à une bergeronnette des champs ! Les
+rosettes de ses escarpins étaient humides de rosée, de douces larmes erraient dans
+ses yeux. « Et qui donc lui donnait le bras ? — Que vous importe ?
+— Eh bien ! oui, c’était une lingère. » Ô solitude de Meudon !
+ô jouissance du pauvre ! celui qui ne vous connaît pas n’a jamais ni ri ni
+pleuré.</p>
+            <p>Garnier prit donc son violon et commença à se frotter les
+mains ; il joua <hi rendition="it">Di tanti palpiti</hi>. Un orgue qui passait dans la rue
+fit entendre aussitôt le chœur des montagnards de <hi rendition="it">la Dame blanche ;</hi>
+une grisette se mit à sa fenêtre ; le son du cor de chasse partit de l’entresol
+d’un marchand de vin et fit pousser à un petit chien les plus affreux
+gémissements. Garnier se sentit inondé du sentiment de l’harmonie, et un déluge
+de pleurs s’apprêtait à le soulager, lorsqu’on tira le cordon de la sonnette.</p>
+            <p>Un domestique en livrée parut à la porte. Garnier le
+reconnut, c’était celui du jeune Trois-Étoiles, son ami d’enfance et son
+camarade de collège. Souvent l’équipage bruyant de l’homme de plaisir s’était
+arrêté à la porte du modeste étudiant ; souvent Garnier, rasant les
+boutiques sur la pointe du pied, comme une hirondelle en temps de pluie, s’était
+rendu à l’hôtel splendide du père de Trois-Étoiles, après avoir, du bout de ses
+gants beurre frais, soulevé légèrement le marteau nouvellement verni ; ses
+bas de soie mouchetés de crotte s’étaient enfoncés avec onction dans la laine moelleuse
+des tapis. Souvent inondé de vin, Garnier avait passé de bonnes heures au bruit
+des verres et des assiettes, et parfois, au dessert, les coudes sur la table, il
+avait décoché l’anecdote concise dont le trait, tant soit peu satanique, déridait
+le noble foyer. – Jamais la figure osseuse et abasourdie du laquais qui venait
+de sonner ne s’était présentée devant lui dans un moment plus opportun ; une
+lettre fut bientôt ouverte. Voici ce qu’elle contenait :</p>
+            <p>« Mon cher ami, prêt à
+partir pour, etc., où je reste trois semaines, j’ai à te dire que, etc.</p>
+            <p>» <hi rendition="it">Signé</hi> : TROIS-ÉTOILES.
+ </p>
+            <p>» <hi rendition="it">Post-scriptum</hi>. Fais-moi le plaisir de m’envoyer
+deux douzaines de crayons et de monter mes chevaux le plus souvent que tu
+pourras ; tu sais qu’ils sont à toi et que cela m’oblige. Adieu, au revoir,
+Garnier. »</p>
+            <p>Que pensez-vous que fit Garnier ? qu’il se montra
+joyeux, qu’il courut à son habit vert ? Il ne se montra point joyeux ;
+il courut à son habit vert, c’est vrai, je n’en disconviens pas, mais il fronça
+les sourcils ; ses mains allèrent naturellement s’enfoncer dans ses poches,
+comme pour en braver la profondeur. Son menton disparut dans sa cravate, sa clef
+dans son gousset, et au moment où il tira sa porte, en disant à François de le
+suivre, l’ariette la plus folle s’élança de ses lèvres entr’ouvertes.</p>
+            <p>Je vous prie de remarquer que je ne plaisante point, et que
+cette histoire n’est point un conte. Garnier demeure rue Poirée ; sa
+famille est de Lons-le-Saunier.</p>
+            <p>Dès que Garnier fut chez Trois-Étoiles, il monta à cheval. Dès
+qu’il fut à cheval, il fut au bois ; dès qu’il fut au bois, il chercha de côté
+et d’autre la beauté qu’il avait vue aux Bouffes.</p>
+            <p>Elle passa aussitôt près de lui, très lentement et en
+voiture découverte. Il la regarda à plusieurs reprises ; mais il ne la
+reconnut pas, attendu qu’elle avait oublié de mettre sa robe orange, et qu’elle
+était en douillette bleue. Quant à elle, elle ne le reconnut pas non plus, quoiqu’il
+eût toujours son habit vert, attendu que la veille elle n’avait fait aucune
+attention à lui.</p>
+            <p>Garnier, depuis trois heures jusqu’à cinq, ne cessa de s’évertuer
+de la manière la plus affreuse pour découvrir une robe orange. Une légère
+averse commençait à tomber, les équipages se pressaient en grand nombre à la
+porte Maillot ; les voiles se baissaient, les capotes des voitures se
+relevaient, les cavaliers anglais ouvraient leurs parapluies, tandis que les
+français faisaient siffler leurs cravaches contre le vent lourd et humide qui
+déteignait leurs moustaches frisées. Au moment où Garnier, perdu dans cette
+foule, venait de piquer des deux vers la rue Poirée, une robe du plus bel
+orange passa devant lui comme un éclair. Garnier s’arrêta court, c’est-à-dire
+voulut s’arrêter court ; mais son cheval étant d’un autre avis, il y eut
+entre eux une petite contestation. Le cheval, habitué à une main ferme, donnait
+de si bonnes raisons pour continuer sa route, que Garnier faillit s’y rendre en
+tombant à la renverse. Il ne s’entêta pas, et, élevant les guides, il partit
+comme un trait sur les traces de la robe orange. Il fut bientôt à côté de la
+voiture, et de la porte Maillot à la rue de Rivoli, ce ne furent qu’œillades
+meurtrières et soupirs à la dérobée.</p>
+            <p>Garnier était bien fait de sa personne, petit et joufflu. Une
+immense forêt de cheveux noirs, dont le désordre annonçait un homme supérieur, lui
+avait, en dépit de ses prétentions byroniennes, mérité le surnom de Werther
+crépu. Tant que le cheval de Trois-Étoiles pensait à ses affaires en marchant, Garnier
+se laissait aller avec assez d’aisance. Son unique habit, par la grande
+habitude qu’ils avaient de vivre ensemble, avait fini par s’accommoder à sa
+taille ; d’autre part, la pluie augmentait le mérite de sa démarche.</p>
+            <p>La dame orange, de son côté, était sèche et délibérée ;
+elle avait de la bouche jusqu’aux oreilles, et du front jusqu’à l’occiput ;
+bien faite d’ailleurs, d’une grande et belle taille ; une de ces beautés
+parisiennes qui ont leur éclat au bal, et dont quelqu’un a dit qu’elles
+devraient aller aux Tuileries avec un bougeoir à la main.</p>
+            <p>Garnier lui revint à la tête au moment où, en rentrant chez
+elle, sa femme de chambre lui apporta ses pantoufles ; elle y pensa jusqu’à
+six heures un quart, heure, où elle fut dîner en ville.</p>
+            <p>En sorte que huit jours consécutifs se passèrent de la
+manière suivante : à quatre heures du soir Garnier montait à cheval, allait
+au bois, apercevait la dame orange, tâchait de prendre le petit galop et escortait
+la calèche. La dame regardait Garnier depuis la porte Maillot jusqu’à la rue de
+Rivoli, et pensait à lui en mettant ses pantoufles, jusqu’à six heures un quart,
+heure où elle allait dîner en ville ou chez elle.</p>
+            <p>Le neuvième jour il fit une pluie battante. Voilà où j’attendais
+Garnier. Plus de cheval, plus de dame orange ; un frisson mortel le parcourut :
+c’était la lune rousse qui commençait.</p>
+            <p>Le poêle, à demi mort de froid, supporta de nouveau le front
+rêveur de Garnier. L’habit vert reprit sa pose mélancolique sur la chaise
+rompue, et le pistolet inoffensif fut regardé de travers chaque matin et chaque
+soir.</p>
+            <p>Il fallait en finir. Garnier prit une plume et écrivit :</p>
+            <p>« Madame, depuis longtemps que je vous suis
+partout, peut-être ne m’avez-vous pas fait l’honneur… »</p>
+            <p>Au fait, je suis bien bon de vous dire ce qu’il écrivit ;
+il écrivit ce que tout le monde écrit, ce qu’Adam écrivait à Ève, ce que vous
+avez écrit hier, et ce que vous écrirez demain.</p>
+            <p>La dame orange fut émue ; elle demanda l’adresse de
+Garnier, et lui défendit, dans sa réponse, de songer à elle plus longtemps. Garnier,
+rempli du désespoir le plus affreux, passa le reste de la journée sous ses
+fenêtres. À la nuit tombante, il causa une demi-heure avec le concierge, faute
+d’argent, avec la plus grande politesse. La femme de chambre lui entr’ouvrit la
+porte, et, marchant sur la patte du petit chien, il se précipita aux pieds de
+la belle Amélie.</p>
+            <p>Garnier, comme on l’a dit, comprenait la passion échevelée, l’amour
+dramatique et quantité d’autres belles choses qui sont dans nos habitudes. La
+dame le fit mettre à la porte après s’être laissé baiser la main.</p>
+            <p>Le lendemain, contre toute attente, il fit un beau soleil ;
+Garnier, enivré de langueur, envoya chez la dame orange ; il lui demandait
+un rendez-vous, qui lui fut accordé. À quatre heures, il monta à cheval ; le
+rendez-vous était pour neuf heures. La dame orange parut au bois. Ses yeux
+étaient à demi fermés pour indiquer la fatigue d’une nuit de remords ; elle
+s’était penchée beaucoup plus que de coutume dans le fond de sa voiture, et le
+peu de rouge qu’elle avait marquait la crainte et l’espérance.</p>
+            <p>Il arriva qu’un groupe de jeunes gens qui, la veille au soir,
+s’étaient jeté la dame orange à la tête, dans un cotillon de deux heures et
+demie, s’arrêta autour de sa voiture. Elle avait dansé comme un ange ; sa
+parure était la plus délicieuse du monde, et Garnier, soufflant dans ses doigts,
+sentit qu’il fallait payer de sa personne.</p>
+            <p>J’ai dit plus haut que deux événements, frivoles en
+apparence et entièrement dus au hasard, décidèrent du sort de Garnier. En ce
+moment, il était parvenu au plus haut degré du bonheur, son étoile était à son
+zénith ; celle de la dame orange s’en approchait en scintillant comme une
+tremblante planète. Son idéal descendait sur la terre ; et comme le
+Théodore de Lope de Véga, il était prêt à tendre les bras au ciel en s’écriant :
+« Fortune, mets un clou d’or à l’essieu de ta roue ! car ici tu dois
+t’arrêter ! »</p>
+            <p>Il s’élança vers la dame orange, voulant se mêler au groupe
+qui la félicitait. Malheureusement, pour s’élancer, il enfonça imprudemment ses
+deux éperons dans le ventre du cheval de Trois-Étoiles, qui pensait à ses
+affaires. Il y eut encore une petite contestation ; mais cette fois les
+raisons du cheval furent si bonnes et si frappantes, que Garnier, convaincu, tomba
+la tête la première sans se faire le moindre mal.</p>
+            <p>J’ai annoncé que cette histoire est vraie ; j’ai dit la
+demeure de Garnier ; la vérité m’oblige à ajouter que la calèche continua
+sa marche, et que le soir, lorsque Garnier, dans le dernier excès de la joie, se
+rendit à l’hôtel de la dame orange, il trouva la porte fermée.</p>
+            <p>La dame s’était-elle moquée du pauvre garçon, ou sa chute
+malencontreuse l’avait-elle dégoûtée de lui ? Rien, il est vrai, n’avait
+motivé cet accident ; mais si elle eût connu Garnier, elle aurait su que
+bien rarement les innombrables accidents qui lui arrivaient étaient motivés. Le
+hasard, ce dieu des audacieux, semblait faire jouer sans cesse autour de lui, comme
+autant de farfadets remplis de malice, les déboires les plus ironiques. Qu’on
+me permette d’en citer un exemple. Un jour, Garnier, voulant écrire une lettre,
+laissa tomber sa plume et marcha dessus. Il en prit une neuve, et se coupa au
+doigt en la taillant. Il ouvrit un tiroir pour prendre du taffetas d’Angleterre ;
+le tiroir résista, puis, cédant tout à coup avec violence, il renversa toute
+son encre rouge sur sa provision de papier blanc. L’encre gagnait de plus en
+plus, et, se divisant en mille canaux, dessinait des arabesques qui menaçaient
+de s’étendre jusqu’à son pantalon neuf. Cependant Garnier, sa plume entre les
+dents, n’osait porter sur rien ses doigts ensanglantés ; il donna un grand
+coup de coude dans le tiroir, et dans la douleur que lui causa la clef qu’il
+avait heurtée, il fit aussitôt un soubresaut en arrière. Sa chaise manqua des
+quatre pieds ; ce fut alors que son paravent, placé derrière lui, perdit
+équilibre, et, s’abattant avec une majestueuse lenteur, couvrit de ses ailes déployées
+la table, la chaise, la chandelle et Garnier.</p>
+            <p>Ceci paraîtra peut-être puéril au lecteur ; c’étaient
+là cependant les plus grands malheurs de Garnier ; mais comme sa vie en
+était tissue, ses désagréments les plus légers, se succédant ainsi sans relâche,
+finissaient, comme autant de gouttes d’eau, par composer un torrent implacable
+sous lequel Garnier se débattait en vain dans le plus affreux désespoir.</p>
+            <p>Dépérissant de honte et de rage, il ne pouvait concevoir
+comment une chute de cheval dans une allée sablée pouvait suffire pour lui
+faire perdre un cœur de femme. Il jura de ne plus aller au bois, de ne plus
+revoir Amélie, et sa bulle de savon, crevée par une épingle, lui remplit la
+cervelle de gaz méphitique en s’évaporant dans les airs. « Je ne m’étais
+pourtant pas fait le moindre mal, » se disait-il un matin en regardant
+dans un miroir sa face rubiconde couverte de larges estafilades de rasoir. Le
+pauvre diable ne songeait pas que c’était là le mal précisément. S’il s’était
+seulement enfoncé une côte, tout était sauvé, et les larmes les plus tendres, les
+baumes les plus fins auraient coulé le soir sur sa blessure. Alors il aurait pu,
+comme Caton l’Ancien, déchirer l’appareil sanglant et mourir pour celle qu’il
+aimait. Mais il s’était relevé à l’instant même, et il avait cru bien faire, en
+recevant avec un sourire la cruelle insulte du destin.</p>
+            <p>La plus noire mélancolie s’empara de lui : jamais il n’avait
+été plus complètement Byron. Pour la première fois de sa vie, il était en droit
+de haïr l’espèce humaine. Il renonça au monde, et écrivit d’une main ferme sur
+la première feuille d’une belle main de papier blanc le titre d’un roman par lettres
+avec cette épigraphe :</p>
+            <p xml:lang="en">« Frailty thy name is woman. »</p>
+            <p>Mais la dame orange avait pour mari le plus singulier des
+hommes. C’était un gros baril de bière mousseuse. Son nez ne saurait être
+comparé qu’à la trompette du jugement dernier. Tout ce qu’il faisait, tout ce
+qu’il disait, ressemblait au bruit d’une charrette. Si l’idée lui était jamais
+venue de se cacher dans l’appartement de sa femme pour surprendre quelque
+intrigue, il lui aurait pris à coup sûr, comme dans la chanson italienne, un
+effroyable éternuement. Mais jamais pareille idée ne lui était venue. Entre
+deux profondes ornières, sa vie s’écoulait doucement, soulevée çà et là par les
+cahots de son gros rire. Depuis quinze ans de mariage, il s’était pris
+régulièrement de passion pour tous les adorateurs de sa femme. Il n’avait
+jamais vu Garnier qu’une fois ou deux ; mais cette irrésistible sympathie
+n’avait pas manqué son effet, et dès qu’il eut organisé pour le printemps ses
+dîners périodiques à la campagne, il fallut, bon gré, mal gré, que sa nouvelle
+connaissance en fût.</p>
+            <p>Me promenant un jour à cette époque dans le jardin de ce
+brave homme avec mon ami Garnier, je lui faisais remarquer comme le bonheur
+dépend ici-bas de peu de chose : que se serait-il passé le 27 juillet
+s’il avait fait une pluie battante ? Que serait devenu l’univers, si
+Brutus, aux ides de mars, eût avalé, comme Anacréon, un raisin de travers ?
+Que feriez-vous vous-même si vous gagniez à la loterie ?</p>
+            <p>Garnier, ne mettant point à la loterie, niait positivement
+la chose. Il détestait la littérature philosophique et s’était opiniâtré toute
+sa vie à s’abandonner avec confiance à ce même hasard qui le mystifiait si
+assidûment. Il leva les yeux au ciel. Hélas ! sa brillante étoile avait
+disparu. La planète de la dame orange brillait solitaire et orgueilleuse dans
+un éther sans nuages. Un léger coup de vent fit frémir les feuilles, et une
+molle vapeur, glissant sur les collines lointaines, s’éleva tout à coup de l’horizon.
+Elle monta silencieusement vers la voie lactée ; puis, s’épaississant de
+plus en plus, elle s’arrêta, comme incertaine de sa marche. Les rossignols
+chantaient au bord de la pièce d’eau ; les fleurs s’épanouissaient sous la
+rosée. Un bruit sourd et éloigné annonça que l’air se chargeait d’électricité ;
+alors la nue s’abaissa sur la terre et, comme par un ressort magique, étendit
+deux sombres ailes de l’orient à l’occident. Une faible fissure, semblable à
+une meurtrière profonde, laissait seule encore apercevoir l’immensité. La
+planète de la dame orange scintillait pleine d’audace. Comme une flèche lancée
+par un arc mogol, ses rayons acérés traçaient du ciel à la terre une hyperbole
+de feu. Mais c’est en vain qu’elle luttait contre l’orage, et la nuée, crevant
+tout à coup avec un fracas terrible, la dévora et l’anéantit.</p>
+            <p>La pluie nous avait forcés à rentrer dans le salon, et nous
+prîmes bientôt place à table. Garnier, ne pouvant guérir son fatal amour, ne
+manquait pas de faire la plus sotte figure partout où il se montrait. La dame
+orange, il faut en convenir, le dédaignait complètement. Jamais elle n’avait
+été plus à la mode.</p>
+            <p>Ce jour-là surtout, il n’avait jamais été en butte à des railleries
+plus mordantes, à de plus cruelles agaceries. L’ironie est une figure de
+rhétorique qui, lorsqu’elle n’est pas trop prodiguée, est du plus grand effet. Ce
+qui portait la belle Amélie à rire outre mesure, c’est qu’elle avait les dents
+fort belles. À chaque trait piquant qui sortait de ses lèvres au-dessus du
+bruit de la vaisselle et du trépignement des laquais, croassait la gaieté bruyante
+de l’amphitryon. Garnier se montra d’abord très peu sensible à tout ce qui se
+passait autour de lui ; tout en se dandinant à trois pieds de la table et
+en marchant sur sa serviette, il se conformait scrupuleusement à ses habitudes
+dévorantes : la tête penchée sur son assiette, il ne laissait jamais le
+maître d’hôtel effleurer en vain, dans sa tournée, sa crinière hérissée ; et
+si, par hasard, il entendait un mot de la conversation, il se contentait de se
+balancer à droite et à gauche en regardant ses voisins d’un air inquiet.</p>
+            <p>Au dessert, deux auteurs romantiques et un lieutenant de
+hussards s’étant pris à déraisonner, le curé du village baissa la tête ; il
+aperçut devant lui un bowl d’eau tiède dont il ignorait complètement l’usage. C’était
+la première fois qu’il sortait de son presbytère pour dîner au château. Après
+avoir hésité quelques moments, il prit le parti courageux d’avaler, par
+politesse, la fade potion. La dame orange s’en aperçut, et, charmée de cette
+aventure, fixa ses grands yeux sur Garnier, espérant qu’il en ferait autant. Garnier
+était, de son naturel, la plus distraite créature du monde. On le rencontrait
+quelquefois sans chapeau, et toutes les fois qu’il se trouvait chargé, dans la
+rue, d’un paquet assez fort pour l’obliger à prendre un fiacre, il oubliait
+infailliblement dans la voiture ce qui l’avait forcé d’y monter.</p>
+            <p>Il n’avala point le bowl, mais il fut sur le point de le
+faire et s’arrêta au parti de le laisser tomber doucement sur les genoux de sa
+voisine. La dame orange n’y put tenir, et pour étouffer un grand éclat de rire,
+elle mordit précipitamment dans une amande qu’elle prit pour une praline. Je ne
+sais trop comment la chose arriva, et si l’amande était une noisette ; mais
+le fait est qu’elle se cassa net une dent du milieu. La dent tomba dans son
+assiette, et le domestique qui se trouvait derrière l’enleva aussitôt. Amélie n’avait
+pas poussé un cri ; elle posa le coude sur la table, et regarda autour d’elle
+si on s’en était aperçu. Tout le monde l’avait vu distinctement, tous les
+regards étaient sur elle, et les plus charitables des convives ne manquèrent
+pas de crier à tue-tête.</p>
+            <p>Impossible de faire remettre la dent funeste. Déjà elle
+entendait chuchoter : « Madame une telle a une dent postiche. »
+Sa beauté était perdue, son règne était passé.</p>
+            <p>Garnier la dévorait des yeux. Comme il la plaignait
+sincèrement, lui, que cette fatale beauté avait réduit au désespoir ! Comme
+il serait tombé de cheval huit jours de suite, tous les matins et tous les
+soirs, devant la ville et la campagne, pour rattacher à cette bouche adorée la perle
+qui en était tombée ! comme il souffrait pour elle ! comme de grosses
+larmes roulaient dans ses yeux ! comme il la suivit tristement lorsque, prenant
+son châle et son chapeau, elle se fut enfuie dans le jardin pour y pleurer à
+chaudes larmes !</p>
+            <p>Amélie était au désespoir ; son étoile était tombée
+dans l’immensité. De tant de plaisirs et d’orgueil, il ne lui restait que la
+pitié du monde, et quarante ans à vivre avec une dent de moins.</p>
+            <p>La belle Amélie prit Garnier pour amant ; elle est
+partie avec lui pour l’Italie. Les dernières lettres de Milan annoncent que sa
+dent est parfaitement remplacée, et qu’elle a les noisettes en horreur.</p>
+         </div>
+      </body>
+   </text>
+</TEI>
