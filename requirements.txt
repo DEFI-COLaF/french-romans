@@ -1,0 +1,12 @@
+ruzicka @ git+https://github.com/bnagy/ruzicka
+seaborn
+scikit-learn
+tqdm
+scipy
+lxml
+matplotlib
+imbalanced-learn
+jupyter
+notebook
+regex
+umap-learn
