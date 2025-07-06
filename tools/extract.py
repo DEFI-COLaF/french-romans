@@ -5,6 +5,7 @@ from typing import List, Dict, Optional, Tuple
 import unicodedata
 import pandas as pd
 import regex as re
+import tqdm
 import collections
 
 
@@ -21,9 +22,6 @@ def split(text: str) -> List[str]:
 class Metadata:
     author: str
     date: int
-    author: str
-    date: int
-    title: str
     title: str
     window: str
 
@@ -67,7 +65,7 @@ def normalize(string: str, case: bool = False) -> str:
 
 def load_authors(case: bool = False) -> List[Text]:
     data = []
-    for file in glob.glob(f"{_datapath}/authors/*/*.txt"):
+    for file in tqdm.tqdm(glob.glob(f"{_datapath}/authors/*/*.txt"), desc="Loading authors"):
         au, da, ti = op.basename(file).replace(".txt", "").split("_")
         with open(file, encoding="utf8", errors='ignore') as f:
             data.append(
@@ -113,11 +111,20 @@ def filter_sparse_columns(
     return result
 
 
+def filter_keys(dictionary: Dict[str, int], keys: List[str]) -> Dict[str, int]:
+    return {
+        key: val
+        for key, val in dictionary.items()
+        if key in keys
+    }
+
+
 def texts_to_dataframe(
         texts: List[Text],
         min_freq: int = 1,
         min_row_occurence: int = 1,
-        window: Optional[int] = None
+        window: Optional[int] = None,
+        max_features: int = 2000
 ) -> Tuple[pd.DataFrame, List[str]]:
     """
     Converts a list of text metadata dictionaries into a pandas DataFrame of feature vectors.
@@ -143,10 +150,10 @@ def texts_to_dataframe(
     if window:
         raw_feats: List[Dict[str, int]] = []
         labels = []
-        for text in texts:
+        for text in tqdm.tqdm(texts, desc="Parsing windows"):
             for idx, counter in enumerate(text.window_tokens(window=window)):
                 raw_feats.append(counter)
-                labels.append(Metadata(text.author, text.date, text.title, window=f"[{idx*window}:{(idx+1)*window}]"))
+                labels.append(Metadata(text.author, text.date, text.title, window=f"[{idx*(window/2)}:{idx*window}]"))
     else:
         raw_feats: List[Dict[str, int]] = [text.tokens() for text in texts]
         labels = [Metadata(text.author, text.date, text.title, "full") for text in texts]
@@ -154,41 +161,39 @@ def texts_to_dataframe(
 
     # Step 2: Aggregate all features into a global frequency Counter
     all_feats: Dict[str, int] = raw_feats[0].copy()
-    for local_feat in raw_feats[1:]:
+    for local_feat in tqdm.tqdm(raw_feats[1:], desc="Global counting"):
         all_feats += local_feat
 
     # Step 3: Create a consistent feature order based on frequency
-    features = [feature for feature, _ in all_feats.most_common(len(all_feats))]
+    # We ceil at max_feature
+    features: List[str] = [feature for feature, _ in all_feats.most_common(min(max_features, len(all_feats)))]
 
     # Step 4: Convert list of Counters into a DataFrame, filling missing values with zero
-    all_feats_df = pd.DataFrame(raw_feats).fillna(0)
+    all_feats_df = pd.DataFrame([
+        filter_keys(row, features)
+        for row in raw_feats
+    ]).fillna(0)
 
     # Step 5: Reorder columns to match the global feature order
     all_feats_df = all_feats_df[features]
 
-    # Step 6: Filter unusable values
-    filtered = filter_sparse_columns(
-        all_feats_df, min_freq=min_freq, min_row_occurrence=min_row_occurence
-    ).astype(float)
-    features = [col for col in filtered.columns if col != "name" and col != "author"]
-
-    # Step 7: Add metadata columns for author and name
+    # Step 6: Add metadata columns for author and name
     all_feats_df = pd.concat([
         pd.DataFrame(
             [
-                [label.author, label.date, label.title]
+                [label.author, label.date, label.title, label.window]
                 for label in labels
-            ], columns=["var_author", "var_date", "var_title"]),
-        filtered
+            ], columns=["var_author", "var_date", "var_title", "var_window"]),
+        all_feats_df
     ], axis=1)
 
     # Step 7: Use 'name' as the index
     all_feats_df.set_index("var_title", inplace=True)
 
-
     return all_feats_df, features
 
+
 if __name__ == "__main__":
-    # print([sum(val.values()) for val in load_authors()[0].window_tokens()])
-    print(texts_to_dataframe(load_authors(True))[0])
-# print(load_impostors()[0])
+    df, features = texts_to_dataframe(load_authors(True), window=5000)
+    print("To pickle")
+    df.to_pickle("../df.pickle")
