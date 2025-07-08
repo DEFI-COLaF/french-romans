@@ -7,11 +7,12 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 import pandas as pd
 import numpy as np
 import tqdm
-
-from tools.prepare import extract_all_authors_decade, QueryCandidatesImpostors
 from sklearn.preprocessing import StandardScaler
 from ruzicka.BDIVerifier import BDIVerifier
+
+from tools.prepare import extract_all_authors_decade, QueryCandidatesImpostors
 from tools.constants import rng
+from tools import compress
 
 # Set MIN_Candidates (used either in training set or as candidates for BPI)
 MIN_CANDIDATES = 1
@@ -49,8 +50,8 @@ def run_bdi(pickled_experiment: bytes) -> Dict[str, Any]:
 
     return {
         "arrays": np.round(bdi_mm._dist_arrays, decimals=4).tolist(),
-        "date": experiment.year,
-        "probas": np.round(proba, decimals=3),
+        "date": int(experiment.year),
+        "probas": np.round(proba, decimals=3).tolist(),
         "labels": labels,
         "gap": experiment.gap,
         "author": experiment.author
@@ -88,5 +89,5 @@ if __name__ == "__main__":
             for future in as_completed(futures):
                 results.append(future.result())
                 bar.update(1)
-        with open(f"results-bdi-{gap}-{ascending}.json", "w") as f:
-            json.dump(results, f)
+        compress.dump(results, f"results-bdi-{gap}-{ascending}.json")
+        break
