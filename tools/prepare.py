@@ -46,7 +46,8 @@ def extract_author_decade(df: pd.DataFrame, author: str, ascending: bool = True,
 
 
 def extract_all_authors_decade(
-        df: pd.DataFrame, general_impostors: pd.DataFrame, ascending: bool = True, gap: int = 5, min_candidates: int = 1
+        df: pd.DataFrame, general_impostors: pd.DataFrame, features: List[str],
+        ascending: bool = True, gap: int = 5, min_candidates: int = 1
 ) -> Iterator[QueryCandidatesImpostors]:
     """ Given the dataframe of authors we want to query, we iterate over each available series of texts written at
     current_work_year + gap (or -gap in descending mode), yielding a QueryCandidatesImpostors
@@ -57,9 +58,9 @@ def extract_all_authors_decade(
         for experiment in extract_author_decade(
             df, author, ascending, gap, min_candidates
         ):
-            all_subsets = pd.concat(
+            all_subsets = get_relative_frequencies(pd.concat(
                 [experiment.impostors, general_impostors, experiment.candidate, experiment.query]
-            ).fillna(0)
+            ).fillna(0), features=features)
             nb_impostors = general_impostors.shape[0] + experiment.impostors.shape[0]
             yield QueryCandidatesImpostors(
                 author=experiment.author,

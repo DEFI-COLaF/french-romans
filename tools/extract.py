@@ -1,13 +1,12 @@
 import glob
 import os.path as op
 import dataclasses
-from typing import List, Dict, Optional, Tuple
+from typing import List, Dict, Optional, Tuple, Callable
 import unicodedata
 import pandas as pd
 import regex as re
 import tqdm
 import collections
-
 
 _datapath = op.abspath(op.join(op.dirname(__file__), "..", "data"))
 
@@ -124,6 +123,7 @@ def texts_to_dataframe(
         min_freq: int = 1,
         min_row_occurence: int = 1,
         window: Optional[int] = None,
+        extract_features: Optional[Callable[[str], bool]] = None,
         max_features: int = 2000
 ) -> Tuple[pd.DataFrame, List[str]]:
     """
@@ -164,9 +164,16 @@ def texts_to_dataframe(
     for local_feat in tqdm.tqdm(raw_feats[1:], desc="Global counting"):
         all_feats += local_feat
 
-    # Step 3: Create a consistent feature order based on frequency
-    # We ceil at max_feature
-    features: List[str] = [feature for feature, _ in all_feats.most_common(min(max_features, len(all_feats)))]
+    # Step 3: apply extraction to a dictionary
+    if extract_features is not None:
+        features: List[str] = [
+            feature
+            for feature, _ in all_feats.most_common(min(max_features, len(all_feats)))
+            if extract_features(feature)
+        ]
+    else:
+        # We ceil at max_feature
+        features: List[str] = [feature for feature, _ in all_feats.most_common(min(max_features, len(all_feats)))]
 
     # Step 4: Convert list of Counters into a DataFrame, filling missing values with zero
     all_feats_df = pd.DataFrame([
