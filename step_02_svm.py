@@ -23,7 +23,8 @@ for (gap, ascending) in product([0, 5, 10, 15], [True, False]):
             gap=gap,
             ascending=ascending,
             min_candidates=1,
-            general_impostors=impostors[metadata_cols +impostors_features]
+            general_impostors=impostors[metadata_cols +impostors_features],
+            as_pickle=True
         ):
         # WE put everything together to all the same column order
         def train(same_author, not_same):
