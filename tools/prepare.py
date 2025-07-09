@@ -64,27 +64,25 @@ def extract_all_authors_decade(
             ).fillna(0)
             features = [feat for feat in all_subsets.columns if not feat.startswith("var_")]
             all_subsets = get_relative_frequencies(all_subsets, features=features)
+
             nb_impostors = general_impostors.shape[0] + experiment.impostors.shape[0]
+
+            candidate = all_subsets.iloc[nb_impostors:nb_impostors + experiment.candidate.shape[0], :]
+            impostors = all_subsets.iloc[:nb_impostors, :]
+            query = all_subsets.iloc[candidate.shape[0]+nb_impostors:, :]
+            qci =  QueryCandidatesImpostors(
+                author=experiment.author,
+                year=experiment.year,
+                gap=experiment.gap,
+                features=features,
+                query=query,
+                impostors=impostors,
+                candidate=candidate
+            )
             if as_pickle:
-                yield pickle.dumps(QueryCandidatesImpostors(
-                    author=experiment.author,
-                    year=experiment.year,
-                    gap=experiment.gap,
-                    candidate=all_subsets.iloc[nb_impostors:nb_impostors+experiment.query.shape[0], :],
-                    impostors=all_subsets.iloc[:nb_impostors, :],
-                    query=all_subsets.iloc[nb_impostors+experiment.query.shape[0]:, :],
-                    features=features
-                ))
+                yield pickle.dumps(qci)
             else:
-                yield QueryCandidatesImpostors(
-                    author=experiment.author,
-                    year=experiment.year,
-                    gap=experiment.gap,
-                    candidate=all_subsets.iloc[nb_impostors:nb_impostors+experiment.query.shape[0], :],
-                    impostors=all_subsets.iloc[:nb_impostors, :],
-                    query=all_subsets.iloc[nb_impostors+experiment.query.shape[0]:, :],
-                    features=features
-                )
+                yield qci
 
 
 def get_relative_frequencies(dataframe: pd.DataFrame, features: List[str]) -> pd.DataFrame:

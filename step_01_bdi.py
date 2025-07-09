@@ -74,8 +74,8 @@ if __name__ == "__main__":
     # Now, we extract experiment situation from the author dataset
     for (gap, ascending) in product([1, 5, 10, 15], [True, False]):
         results = []
-        if os.path.exists(f"results-bdi-{gap}-{ascending}.json"):
-            continue
+        # if os.path.exists(f"results-bdi-{gap}-{ascending}.json"):
+        #     continue
         with ProcessPoolExecutor(max_workers=NB_PROCS) as executor:
             futures = [
                 executor.submit(run_bdi, experiment)
