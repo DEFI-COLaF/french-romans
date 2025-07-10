@@ -63,7 +63,7 @@ if __name__ == "__main__":
     with open("features.json") as f:
         features = json.load(f)
     authors = pd.read_pickle("authors.pickle")
-    impostors = pd.read_pickle("authors.pickle")
+    impostors = pd.read_pickle("impostors.pickle")
     authors_features = [feat for feat in authors.columns]
     impostors_features = [feat for feat in impostors.columns]
     metadata_cols = [col for col in authors.columns if col not in authors_features]
