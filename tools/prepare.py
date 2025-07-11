@@ -40,7 +40,7 @@ def extract_author_decade(df: pd.DataFrame, author: str, ascending: bool = True,
                 gap=gap,
                 year=year,
                 query=subset[subset.var_date == year].copy(),
-                candidate=subset[subset.var_date >= (year + gap)],
+                candidate=subset[condition],
                 impostors=impostors
             )
 
