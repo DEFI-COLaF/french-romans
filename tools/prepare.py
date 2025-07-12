@@ -34,7 +34,7 @@ def extract_author_decade(df: pd.DataFrame, author: str, ascending: bool = True,
             condition = (subset.var_date <= (year - gap))
             # Mark gap as negative
             gap = -gap
-        if condition.any() and len(set(subset[condition].index.tolist())) > min_candidates:
+        if condition.any() and len(set(subset[condition].index.tolist())) >= min_candidates:
             yield QueryCandidatesImpostors(
                 author=author,
                 gap=gap,
