@@ -131,9 +131,11 @@ def run_svm(pickled_payload: bytes, fast: bool = False, search_mode: str = "halv
     q_t = transformer.transform(q_df)
     imp_test_t = transformer.transform(imp_test[experiment.features]) if len(imp_test) else np.array([])
 
-    proba_q_sum = np.zeros(len(q_df))
+    proba_q_sum  = np.zeros(len(q_df))
     proba_imp_sum = np.zeros(len(imp_test)) if len(imp_test) else np.array([])
-    margin_sum = np.zeros(len(q_df))
+    margin_sum   = np.zeros(len(q_df))
+    n_valid = 0
+
 
     for rep in range(n_ensemble):
         cand_boot = _bootstrap(experiment.candidate, 0.7, seed=rep)
@@ -163,13 +165,19 @@ def run_svm(pickled_payload: bytes, fast: bool = False, search_mode: str = "halv
 
         proba_q_sum += clf.predict_proba(q_t)[:, 1]
         margin_sum += clf.decision_function(q_t)
+        
         if len(imp_test_t):
             proba_imp_sum += clf.predict_proba(imp_test_t)[:, 1]
 
-    proba_q_avg = proba_q_sum / n_ensemble
-    margin_avg = margin_sum / n_ensemble
-    proba_imp_avg = proba_imp_sum / n_ensemble if len(imp_test) else np.array([])
+        n_valid += 1           
 
+    if n_valid == 0:            
+        return None
+
+    proba_q_avg   = proba_q_sum  / n_valid
+    margin_avg    = margin_sum   / n_valid
+    proba_imp_avg = proba_imp_sum / n_valid if len(imp_test) else np.array([])
+    
     if len(imp_test):
         y_true = np.concatenate([np.ones(len(q_df)), np.zeros(len(imp_test))])
         y_scores = np.concatenate([proba_q_avg, proba_imp_avg])
@@ -185,7 +193,7 @@ def run_svm(pickled_payload: bytes, fast: bool = False, search_mode: str = "halv
     return {
         "margin": np.round(margin_avg, 3).tolist(),
         "probas": np.round(proba_q_avg, 3).tolist(),
-        "ensemble_n": n_ensemble,
+        "ensemble_n": n_valid,
         "metrics": {
             "roc_auc": None if np.isnan(roc_auc) else round(roc_auc, 3),
             "avg_prec": None if np.isnan(avg_prec) else round(avg_prec, 3),
