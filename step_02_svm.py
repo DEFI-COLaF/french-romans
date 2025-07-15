@@ -202,6 +202,7 @@ def run_svm(
                 cv=StratifiedKFold(n_splits, shuffle=True, random_state=rep),
                 n_jobs=1,
                 refit=True,
+                error_score=np.nan,
             )
             search.fit(X_train_t, y)
             clf = search.best_estimator_
