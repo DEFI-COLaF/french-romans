@@ -210,7 +210,8 @@ def run_svm(
 
         # -- accumulate predictions --
         proba_q_sum   += clf.predict_proba(q_t)[:, 1]
-        margin_sum    += clf.decision_function(q_t)
+        if hasattr(clf, "decision_function"):
+            margin_sum += clf.decision_function(q_t)
         if len(imp_test_t):
             proba_imp_sum += clf.predict_proba(imp_test_t)[:, 1]
 
@@ -235,7 +236,7 @@ def run_svm(
         bal_acc  = balanced_accuracy_score(y_true, y_scores >= 0.5)
         f1       = f1_score(y_true, y_scores >= 0.5)
     else:
-        bal_acc = acc = f1 = np.nan
+        roc_auc = avg_prec = bal_acc = acc = f1 = np.nan
 
     labels = [
         f"{fn}#{w}" for w, fn in zip(experiment.query["var_window"], experiment.query.index)
