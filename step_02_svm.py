@@ -51,13 +51,13 @@ def _bootstrap(df: pd.DataFrame, frac: float, seed: int = 42) -> pd.DataFrame:
     return df.sample(n=n, replace=True, random_state=np.random.default_rng(seed))
 
  def _train_test_split_imp(df: pd.DataFrame, test_frac: float = TEST_FRAC_IMP):
-     if df.empty:
+    if df.empty:
          return df, df
-+    if len(df) == 1:                # ← nouveau : 1 imposteur → tout en test
-+        return df.iloc[:0], df
+    if len(df) == 1:                # ← nouveau : 1 imposteur → tout en test
+        return df.iloc[:0], df
      test_df = df.sample(frac=test_frac, replace=False, random_state=rng)
-+    if test_df.empty:               # ← nouveau : garantit ≥ 1 en test
-+        test_df = df.sample(1, random_state=rng)
+    if test_df.empty:               # ← nouveau : garantit ≥ 1 en test
+        test_df = df.sample(1, random_state=rng)
      return df.drop(test_df.index), test_df
 
 
