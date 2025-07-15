@@ -199,7 +199,7 @@ def run_svm(
                 Pipeline([("svc", svc)]),
                 {"svc__C": C_GRID},
                 scoring="roc_auc",
-                cv=StratifiedKFold(3, shuffle=True, random_state=rep),
+                cv=StratifiedKFold(n_splits, shuffle=True, random_state=rep),
                 n_jobs=1,
                 refit=True,
             )
