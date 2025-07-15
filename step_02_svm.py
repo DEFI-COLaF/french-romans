@@ -106,16 +106,22 @@ def run_bdi(pickled_experiment: bytes) -> Dict[str, Any]:
 
 # ---------------- SVM worker -------------------------------------------
 
-def run_svm(pickled_payload: bytes) -> Dict[str, Any]:
-    fast = os.getenv(FAST_ENV_KEY) == "1"
-    search_mode = os.getenv(SEARCH_ENV_KEY, "grid")
-    ensemble_n = int(os.getenv(ENSEMBLE_ENV_KEY, "1"))
+def run_svm(pickled_payload: bytes, fast: bool = False, search_mode: str = "halving", n_ensemble: int = 20) -> Dict[str, Any]:
 
-    experiment, transformer_blob = pickle.loads(pickled_payload)
-    transformer: Pipeline = pickle.loads(transformer_blob)
+    experiment = pickle.loads(pickled_payload)
 
     # split impostors once for leak‑free evaluation
     imp_train, imp_test = _train_test_split_imp(experiment.impostors)
+
+    pipeline_fitting_df = imp_train[experiment.features]
+    if len(imp_train) > TRANSFORM_SAMPLE:
+        pipeline_fitting_df = pipeline_fitting_df.sample(TRANSFORM_SAMPLE, random_state=rng)
+
+    transformer = Pipeline([
+        ("log", FunctionTransformer(np.log1p, validate=False)),
+        ("scale", StandardScaler(with_mean=False)),
+    ])
+    transformer.fit(pipeline_fitting_df)
 
     q_df = experiment.query[experiment.features]
     q_t = transformer.transform(q_df)
@@ -125,7 +131,7 @@ def run_svm(pickled_payload: bytes) -> Dict[str, Any]:
     proba_imp_sum = np.zeros(len(imp_test)) if len(imp_test) else np.array([])
     margin_sum = np.zeros(len(q_df))
 
-    for rep in range(ensemble_n):
+    for rep in range(n_ensemble):
         cand_boot = _bootstrap(experiment.candidate, 0.7)
         imp_boot = _bootstrap(imp_train, 0.7)
 
@@ -140,7 +146,14 @@ def run_svm(pickled_payload: bytes) -> Dict[str, Any]:
         else:
             svc = SVC(kernel="linear", class_weight="balanced", probability=True, random_state=rep)
             Search = HalvingGridSearchCV if search_mode == "halving" else GridSearchCV
-            search = Search(Pipeline([("svc", svc)]), {"svc__C": C_GRID}, scoring="roc_auc", cv=StratifiedKFold(3, True, rep), n_jobs=1, refit=True)
+            search = Search(
+                Pipeline([("svc", svc)]),
+                {"svc__C": C_GRID},
+                scoring="roc_auc",
+                cv=StratifiedKFold(3, shuffle=True, random_state=rep),
+                n_jobs=1,
+                refit=True
+            )
             search.fit(X_train_t, y)
             clf = search.best_estimator_
 
@@ -149,9 +162,9 @@ def run_svm(pickled_payload: bytes) -> Dict[str, Any]:
         if len(imp_test_t):
             proba_imp_sum += clf.predict_proba(imp_test_t)[:, 1]
 
-    proba_q_avg = proba_q_sum / ensemble_n
-    margin_avg = margin_sum / ensemble_n
-    proba_imp_avg = proba_imp_sum / ensemble_n if len(imp_test) else np.array([])
+    proba_q_avg = proba_q_sum / n_ensemble
+    margin_avg = margin_sum / n_ensemble
+    proba_imp_avg = proba_imp_sum / n_ensemble if len(imp_test) else np.array([])
 
     if len(imp_test):
         y_true = np.concatenate([np.ones(len(q_df)), np.zeros(len(imp_test))])
@@ -168,7 +181,7 @@ def run_svm(pickled_payload: bytes) -> Dict[str, Any]:
     return {
         "margin": np.round(margin_avg, 3).tolist(),
         "probas": np.round(proba_q_avg, 3).tolist(),
-        "ensemble_n": ensemble_n,
+        "ensemble_n": n_ensemble,
         "metrics": {
             "roc_auc": None if np.isnan(roc_auc) else round(roc_auc, 3),
             "avg_prec": None if np.isnan(avg_prec) else round(avg_prec, 3),
@@ -198,10 +211,10 @@ if __name__ == "__main__":
     with open("features.json") as f:
         features = json.load(f)
     authors = pd.read_pickle("authors.pickle")
-    impostors = pd.read_pickle("impostors.pickle") if os.path.exists("impostors.pickle") else pd.read_pickle("authors.pickle")
-
-    feature_cols = [c for c in authors.columns if c in features]
-    meta_cols = [c for c in authors.columns if c not in features]
+    impostors = pd.read_pickle("impostors.pickle")
+    authors_features = [feat for feat in authors.columns]
+    impostors_features = [feat for feat in impostors.columns]
+    metadata_cols = [col for col in authors.columns if col not in authors_features]
 
     worker = run_bdi if args.engine == "bdi" else run_svm
     suffix = "bdi" if args.engine == "bdi" else "svm"
@@ -210,48 +223,39 @@ if __name__ == "__main__":
 
     for gap, ascending in product([1, 5, 10, 15], [True, False]):
         # fit transformer once per (gap, direction)
-        fit_df = authors[feature_cols]
-        if len(fit_df) > TRANSFORM_SAMPLE:
-            fit_df = fit_df.sample(TRANSFORM_SAMPLE, random_state=rng)
-        transformer = Pipeline([
-            ("log", FunctionTransformer(np.log1p, validate=False)),
-            ("scale", StandardScaler(with_mean=False)),
-        ]).fit(fit_df)
-        transformer_blob = pickle.dumps(transformer)
-
         results: List[Dict[str, Any]] = []
         with ProcessPoolExecutor(max_workers=NB_PROCS) as ex:
-            futs = []
-            for exp in extract_all_authors_decade(
-                df=authors[meta_cols + feature_cols],
-                features=features,
-                gap=gap,
-                ascending=ascending,
-                min_candidates=MIN_CANDIDATES,
-                general_impostors=impostors[meta_cols + feature_cols],
-                as_pickle=True,
-            ):
-                payload = pickle.dumps((exp, transformer_blob)) if suffix == "svm" else exp
-                futs.append(ex.submit(worker, payload))
+            futs = [
+                ex.submit(worker, exp)
+                for exp in extract_all_authors_decade(
+                    df=authors[metadata_cols + authors_features],
+                    features=features,
+                    gap=gap,
+                    ascending=ascending,
+                    min_candidates=MIN_CANDIDATES,
+                    general_impostors=impostors[metadata_cols + impostors_features],
+                    as_pickle=True,
+                )
+            ]
             for fut in as_completed(futs):
                 results.append(fut.result())
                 bar.update(1)
 
         # summary block for SVM
-        if suffix == "svm":
-            roc_vals = [r["metrics"]["roc_auc"] for r in results if r.get("metrics") and r["metrics"]["roc_auc"] is not None]
-            if roc_vals:
-                summary = {m: round(float(np.nanmean([r["metrics"][m] for r in results if r.get("metrics")])), 3)
-                           for m in ("roc_auc", "avg_prec", "accuracy", "f1")}
-                bdi_file = f"results-bdi-{gap}-{ascending}.json.gz"
-                if os.path.isfile(bdi_file):
-                    with gzip.open(bdi_file, "rt") as fh:
-                        bdi_res = json.load(fh)
-                    bdi_roc = [r["metrics"]["roc_auc"] for r in bdi_res if isinstance(r, dict) and r.get("metrics")]  # type: ignore
-                    if len(bdi_roc) == len(roc_vals):
-                        _, p = wilcoxon(roc_vals, bdi_roc, alternative="greater")
-                        summary["wilcoxon_p"] = round(float(p), 4)
-                results.append({"__summary__": summary})
+        # if suffix == "svm":
+        #     roc_vals = [r["metrics"]["roc_auc"] for r in results if r.get("metrics") and r["metrics"]["roc_auc"] is not None]
+        #     if roc_vals:
+        #         summary = {m: round(float(np.nanmean([r["metrics"][m] for r in results if r.get("metrics")])), 3)
+        #                    for m in ("roc_auc", "avg_prec", "accuracy", "f1")}
+        #         bdi_file = f"results-bdi-{gap}-{ascending}.json.gz"
+        #         if os.path.isfile(bdi_file):
+        #             with gzip.open(bdi_file, "rt") as fh:
+        #                 bdi_res = json.load(fh)
+        #             bdi_roc = [r["metrics"]["roc_auc"] for r in bdi_res if isinstance(r, dict) and r.get("metrics")]  # type: ignore
+        #             if len(bdi_roc) == len(roc_vals):
+        #                 _, p = wilcoxon(roc_vals, bdi_roc, alternative="greater")
+        #                 summary["wilcoxon_p"] = round(float(p), 4)
+        #         results.append({"__summary__": summary})
 
         fname = f"results-{suffix}{'-fast' if args.fast and suffix=='svm' else ''}-ens{args.ensemble}-{gap}-{ascending}.json"
         compress.dump(results, fname)
