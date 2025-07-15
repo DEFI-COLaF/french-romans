@@ -92,8 +92,8 @@ def run_bdi(pickled_experiment: bytes) -> Dict[str, Any]:
     if len(proba_imp):
         y_true = np.concatenate([np.ones(len(proba_q)), np.zeros(len(proba_imp))])
         y_scores = np.concatenate([proba_q, proba_imp])
-        roc_auc = roc_auc_score(y_true, y_scores)
-        avg_prec = average_precision_score(y_true, y_scores)
+        #roc_auc = roc_auc_score(y_true, y_scores)
+        #avg_prec = average_precision_score(y_true, y_scores)
         acc = accuracy_score(y_true, y_scores >= 0.5)
         f1 = f1_score(y_true, y_scores >= 0.5)
     else:
@@ -247,8 +247,8 @@ def run_svm(
         "probas": np.round(proba_q_avg, 3).tolist(),
         "ensemble_n": n_valid,
         "metrics": {
-            "roc_auc":  None if np.isnan(roc_auc)  else round(roc_auc, 3),
-            "avg_prec": None if np.isnan(avg_prec) else round(avg_prec, 3),
+            #"roc_auc":  None if np.isnan(roc_auc)  else round(roc_auc, 3),
+            #"avg_prec": None if np.isnan(avg_prec) else round(avg_prec, 3),
             "accuracy": None if np.isnan(acc)      else round(acc, 3),
             "balanced_acc": None if np.isnan(bal_acc) else round(bal_acc, 3),
             "f1":       None if np.isnan(f1)       else round(f1, 3),
