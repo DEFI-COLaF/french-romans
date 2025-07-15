@@ -44,11 +44,11 @@ ENSEMBLE_ENV_KEY = "SVM_ENSEMBLE"
 
 # ---------------- helper utils -----------------------------------------
 
-def _bootstrap(df: pd.DataFrame, frac: float) -> pd.DataFrame:
+def _bootstrap(df: pd.DataFrame, frac: float, seed: int = 42) -> pd.DataFrame:
     if df.empty:
         return df
     n = max(1, int(np.ceil(frac * len(df))))
-    return df.sample(n=n, replace=True, random_state=rng)
+    return df.sample(n=n, replace=True, random_state=np.random.default_rng(seed))
 
 
 def _train_test_split_imp(df: pd.DataFrame, test_frac: float = TEST_FRAC_IMP):
@@ -132,8 +132,8 @@ def run_svm(pickled_payload: bytes, fast: bool = False, search_mode: str = "halv
     margin_sum = np.zeros(len(q_df))
 
     for rep in range(n_ensemble):
-        cand_boot = _bootstrap(experiment.candidate, 0.7)
-        imp_boot = _bootstrap(imp_train, 0.7)
+        cand_boot = _bootstrap(experiment.candidate, 0.7, seed=rep)
+        imp_boot = _bootstrap(imp_train, 0.7, seed=rep)
 
         X_train = pd.concat([cand_boot[experiment.features], imp_boot[experiment.features]])
         y_raw = pd.concat([cand_boot["var_author"], imp_boot["var_author"]])
