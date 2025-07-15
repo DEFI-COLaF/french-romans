@@ -232,9 +232,10 @@ def run_svm(
         roc_auc  = roc_auc_score(y_true, y_scores)
         avg_prec = average_precision_score(y_true, y_scores)
         acc      = accuracy_score(y_true, y_scores >= 0.5)
+        bal_acc  = balanced_accuracy_score(y_true, y_scores >= 0.5)
         f1       = f1_score(y_true, y_scores >= 0.5)
     else:
-        roc_auc = avg_prec = acc = f1 = np.nan
+        bal_acc = acc = f1 = np.nan
 
     labels = [
         f"{fn}#{w}" for w, fn in zip(experiment.query["var_window"], experiment.query.index)
@@ -248,6 +249,7 @@ def run_svm(
             "roc_auc":  None if np.isnan(roc_auc)  else round(roc_auc, 3),
             "avg_prec": None if np.isnan(avg_prec) else round(avg_prec, 3),
             "accuracy": None if np.isnan(acc)      else round(acc, 3),
+            "balanced_acc": None if np.isnan(bal_acc) else round(bal_acc, 3),
             "f1":       None if np.isnan(f1)       else round(f1, 3),
         },
         "labels": labels,
