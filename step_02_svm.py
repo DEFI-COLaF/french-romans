@@ -32,7 +32,7 @@ from tools.constants import rng
 from tools import compress
 
 # ---------------- global parameters ------------------------------------
-MIN_CANDIDATES = 1
+MIN_CANDIDATES = 2
 MAX_NUMBER_OF_SAMPLES = 50
 C_GRID = [0.01, 0.1, 1, 10, 100]
 NB_PROCS = int(os.getenv("NBPROC", "4"))
