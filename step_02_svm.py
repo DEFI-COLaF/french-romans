@@ -199,7 +199,7 @@ def run_svm(
             search = SearchCls(
                 Pipeline([("svc", svc)]),
                 {"svc__C": C_GRID},
-                scoring="BALACC_SCORER",
+                scoring=BALACC_SCORER,
                 cv=StratifiedKFold(n_splits, shuffle=True, random_state=rep),
                 n_jobs=1,
                 refit=True,
