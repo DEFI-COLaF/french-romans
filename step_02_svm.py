@@ -92,8 +92,8 @@ def run_bdi(pickled_experiment: bytes) -> Dict[str, Any]:
     if len(proba_imp):
         y_true = np.concatenate([np.ones(len(proba_q)), np.zeros(len(proba_imp))])
         y_scores = np.concatenate([proba_q, proba_imp])
-        #roc_auc = roc_auc_score(y_true, y_scores)
-        #avg_prec = average_precision_score(y_true, y_scores)
+        roc_auc = roc_auc_score(y_true, y_scores)
+        avg_prec = average_precision_score(y_true, y_scores)
         acc = accuracy_score(y_true, y_scores >= 0.5)
         f1 = f1_score(y_true, y_scores >= 0.5)
     else:
