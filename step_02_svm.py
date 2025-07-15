@@ -24,7 +24,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV, StratifiedKFold
 from sklearn.experimental import enable_halving_search_cv  # noqa: F401
 from sklearn.model_selection import HalvingGridSearchCV
-from sklearn.metrics import roc_auc_score, average_precision_score, accuracy_score, f1_score
+from sklearn.metrics import roc_auc_score, average_precision_score, accuracy_score, f1_score, balanced_accuracy_score, make_scorer
 from scipy.stats import wilcoxon
 
 from tools.prepare import extract_all_authors_decade, QueryCandidatesImpostors
@@ -118,6 +118,7 @@ def run_bdi(pickled_experiment: bytes) -> Dict[str, Any]:
 
 # ---------------- SVM worker -------------------------------------------
 
+BALACC_SCORER = make_scorer(balanced_accuracy_score)
 
 def run_svm(
     pickled_payload: bytes,
