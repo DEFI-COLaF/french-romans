@@ -3,7 +3,8 @@ import json
 import os
 import pickle
 from itertools import product
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
+
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
 import pandas as pd
