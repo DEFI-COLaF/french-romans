@@ -184,6 +184,16 @@ def run_svm(
             svc = SVC(
                 kernel="linear", class_weight="balanced", probability=True, random_state=rep
             )
+            
+            n_pos = int((y == 1).sum())
+            n_neg = len(y) - n_pos
+
+            # si trop peu de positifs ou de négatifs, on saute cette réplication
+            if min(n_pos, n_neg) < 2:
+                continue                             
+
+            # choisir un nombre de folds compatible
+            n_splits = min(3, n_pos, n_neg)            # 2 ou 3 folds selon la dispo
             SearchCls = HalvingGridSearchCV if search_mode == "halving" else GridSearchCV
             search = SearchCls(
                 Pipeline([("svc", svc)]),
