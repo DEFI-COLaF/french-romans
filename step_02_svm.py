@@ -249,8 +249,12 @@ if __name__ == "__main__":
                     as_pickle=True,
                 )
             ]
+
             for fut in as_completed(futs):
-                results.append(fut.result())
+                res = fut.result()
+                if res is not None:     
+                    results.append(res)
+        
                 bar.update(1)
 
         # summary block for SVM
