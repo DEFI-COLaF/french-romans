@@ -111,99 +111,129 @@ def run_bdi(pickled_experiment: bytes) -> Dict[str, Any]:
 
 # ---------------- SVM worker -------------------------------------------
 
-def run_svm(pickled_payload: bytes, fast: bool = False, search_mode: str = "halving", n_ensemble: int = 20) -> Dict[str, Any]:
+
+def run_svm(
+    pickled_payload: bytes,
+    fast: bool = False,
+    search_mode: str = "halving",
+    n_ensemble: int = 20,
+) -> Optional[Dict[str, Any]]:
+    """Entraîne/évalue un ensemble de SVM avec pare-feu classe unique."""
 
     experiment = pickle.loads(pickled_payload)
 
-    # split impostors once for leak‑free evaluation
+    # -------- split imposteurs --------------------------------------
     imp_train, imp_test = _train_test_split_imp(experiment.impostors)
 
-    pipeline_fitting_df = imp_train[experiment.features]
-    if len(imp_train) > TRANSFORM_SAMPLE:
-        pipeline_fitting_df = pipeline_fitting_df.sample(TRANSFORM_SAMPLE, random_state=rng)
+    # -------- transformer ------------------------------------------
+    fit_df = imp_train[experiment.features]
+    if len(fit_df) > TRANSFORM_SAMPLE:
+        fit_df = fit_df.sample(TRANSFORM_SAMPLE, random_state=rng)
 
-    transformer = Pipeline([
-        ("log", FunctionTransformer(np.log1p, validate=False)),
-        ("scale", StandardScaler(with_mean=False)),
-    ])
-    transformer.fit(pipeline_fitting_df)
+    transformer = Pipeline(
+        [
+            ("log",   FunctionTransformer(np.log1p, validate=False)),
+            ("scale", StandardScaler(with_mean=False)),
+        ]
+    )
+    transformer.fit(fit_df)
 
-    q_df = experiment.query[experiment.features]
-    q_t = transformer.transform(q_df)
-    imp_test_t = transformer.transform(imp_test[experiment.features]) if len(imp_test) else np.array([])
+    q_df       = experiment.query[experiment.features]
+    q_t        = transformer.transform(q_df)
+    imp_test_t = (
+        transformer.transform(imp_test[experiment.features]) if len(imp_test) else np.array([])
+    )
 
-    proba_q_sum  = np.zeros(len(q_df))
+    # -------- ensemble ---------------------------------------------
+    proba_q_sum   = np.zeros(len(q_df))
     proba_imp_sum = np.zeros(len(imp_test)) if len(imp_test) else np.array([])
-    margin_sum   = np.zeros(len(q_df))
-    n_valid = 0
-
+    margin_sum    = np.zeros(len(q_df))
+    n_valid       = 0
 
     for rep in range(n_ensemble):
         cand_boot = _bootstrap(experiment.candidate, 0.7, seed=rep)
-        imp_boot = _bootstrap(imp_train, 0.7, seed=rep)
+        imp_boot  = _bootstrap(imp_train,         0.7, seed=rep)
 
-        X_train = pd.concat([cand_boot[experiment.features], imp_boot[experiment.features]])
-        y_raw = pd.concat([cand_boot["var_author"], imp_boot["var_author"]])
+        X_train = pd.concat(
+            [cand_boot[experiment.features], imp_boot[experiment.features]]
+        )
+        y_raw = pd.concat(
+            [cand_boot["var_author"], imp_boot["var_author"]]
+        )
         y = (y_raw == experiment.author).astype(int).values
+
+        # -- pare-feu classe unique --
+        if len(np.unique(y)) < 2:
+            continue
+
         X_train_t = transformer.transform(X_train)
 
         if fast:
-            base = SGDClassifier(loss="hinge", alpha=1e-4, class_weight="balanced", random_state=rep)
+            base = SGDClassifier(
+                loss="hinge", alpha=1e-4, class_weight="balanced", random_state=rep
+            )
             clf = CalibratedClassifierCV(base, method="sigmoid", cv=3).fit(X_train_t, y)
         else:
-            svc = SVC(kernel="linear", class_weight="balanced", probability=True, random_state=rep)
-            Search = HalvingGridSearchCV if search_mode == "halving" else GridSearchCV
-            search = Search(
+            svc = SVC(
+                kernel="linear", class_weight="balanced", probability=True, random_state=rep
+            )
+            SearchCls = HalvingGridSearchCV if search_mode == "halving" else GridSearchCV
+            search = SearchCls(
                 Pipeline([("svc", svc)]),
                 {"svc__C": C_GRID},
                 scoring="roc_auc",
                 cv=StratifiedKFold(3, shuffle=True, random_state=rep),
                 n_jobs=1,
-                refit=True
+                refit=True,
             )
             search.fit(X_train_t, y)
             clf = search.best_estimator_
 
-        proba_q_sum += clf.predict_proba(q_t)[:, 1]
-        margin_sum += clf.decision_function(q_t)
-        
+        # -- accumulate predictions --
+        proba_q_sum   += clf.predict_proba(q_t)[:, 1]
+        margin_sum    += clf.decision_function(q_t)
         if len(imp_test_t):
             proba_imp_sum += clf.predict_proba(imp_test_t)[:, 1]
 
-        n_valid += 1           
+        n_valid += 1
 
-    if n_valid == 0:            
+    # -------- aucun modèle valide ----------------------------------
+    if n_valid == 0:
         return None
 
+    # -------- moyennes ---------------------------------------------
     proba_q_avg   = proba_q_sum  / n_valid
     margin_avg    = margin_sum   / n_valid
     proba_imp_avg = proba_imp_sum / n_valid if len(imp_test) else np.array([])
-    
+
+    # -------- métriques --------------------------------------------
     if len(imp_test):
-        y_true = np.concatenate([np.ones(len(q_df)), np.zeros(len(imp_test))])
+        y_true   = np.concatenate([np.ones(len(q_df)), np.zeros(len(imp_test))])
         y_scores = np.concatenate([proba_q_avg, proba_imp_avg])
-        roc_auc = roc_auc_score(y_true, y_scores)
+        roc_auc  = roc_auc_score(y_true, y_scores)
         avg_prec = average_precision_score(y_true, y_scores)
-        acc = accuracy_score(y_true, y_scores >= 0.5)
-        f1 = f1_score(y_true, y_scores >= 0.5)
+        acc      = accuracy_score(y_true, y_scores >= 0.5)
+        f1       = f1_score(y_true, y_scores >= 0.5)
     else:
         roc_auc = avg_prec = acc = f1 = np.nan
 
-    labels = [f"{fn}#{w}" for w, fn in zip(experiment.query["var_window"], experiment.query.index)]
+    labels = [
+        f"{fn}#{w}" for w, fn in zip(experiment.query["var_window"], experiment.query.index)
+    ]
 
     return {
         "margin": np.round(margin_avg, 3).tolist(),
         "probas": np.round(proba_q_avg, 3).tolist(),
         "ensemble_n": n_valid,
         "metrics": {
-            "roc_auc": None if np.isnan(roc_auc) else round(roc_auc, 3),
+            "roc_auc":  None if np.isnan(roc_auc)  else round(roc_auc, 3),
             "avg_prec": None if np.isnan(avg_prec) else round(avg_prec, 3),
-            "accuracy": None if np.isnan(acc) else round(acc, 3),
-            "f1": None if np.isnan(f1) else round(f1, 3),
+            "accuracy": None if np.isnan(acc)      else round(acc, 3),
+            "f1":       None if np.isnan(f1)       else round(f1, 3),
         },
         "labels": labels,
-        "date": int(experiment.year),
-        "gap": experiment.gap,
+        "date":   int(experiment.year),
+        "gap":    experiment.gap,
         "author": experiment.author,
     }
 
