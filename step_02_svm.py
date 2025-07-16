@@ -286,7 +286,7 @@ if __name__ == "__main__":
 
     bar = tqdm.tqdm()
 
-    for gap, ascending in product([1, 5, 10, 15], [True, False]):
+    for gap in [1, 5, 10, 15, -1, -5, -10, -15]:
         # fit transformer once per (gap, direction)
         results: List[Dict[str, Any]] = []
         with ProcessPoolExecutor(max_workers=NB_PROCS) as ex:
@@ -296,7 +296,6 @@ if __name__ == "__main__":
                     df=authors[metadata_cols + authors_features],
                     features=features,
                     gap=gap,
-                    ascending=ascending,
                     min_candidates=MIN_CANDIDATES,
                     general_impostors=impostors[metadata_cols + impostors_features],
                     as_pickle=True,
@@ -307,7 +306,6 @@ if __name__ == "__main__":
                 res = fut.result()
                 if res is not None:     
                     results.append(res)
-        
                 bar.update(1)
 
         # summary block for SVM
@@ -326,7 +324,7 @@ if __name__ == "__main__":
         #                 summary["wilcoxon_p"] = round(float(p), 4)
         #         results.append({"__summary__": summary})
 
-        fname = f"results-{suffix}{'-fast' if args.fast and suffix=='svm' else ''}-ens{args.ensemble}-{gap}-{ascending}.json"
+        fname = f"results-{suffix}{'-fast' if args.fast and suffix=='svm' else ''}-ens{args.ensemble}-G{gap}.json"
         compress.dump(results, fname)
 
     bar.close()

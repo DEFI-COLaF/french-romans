@@ -15,40 +15,38 @@ class QueryCandidatesImpostors:
     features: List[str] = None
 
 
-def extract_author_decade(df: pd.DataFrame, author: str, ascending: bool = True, gap: int = 5,
-                   min_candidates: int = 1
-                   ) -> Iterator[QueryCandidatesImpostors]:
+def extract_author_decade(
+        df: pd.DataFrame, author: str, gap: int = 5,min_candidates: int = 1
+) -> Iterator[QueryCandidatesImpostors]:
     """ Given the dataframe of authors we want to query, we iterate over each available series of texts written at
     current_work_year + gap (or -gap in descending mode), yielding a QueryCandidatesImpostors"""
-    impostors = df[df.var_author != author].copy()
-    subset = df[df.var_author == author].copy()
+    author_df = df[df.var_author == author].copy()
 
     # Iterate over each year
-    for year in sorted(subset.var_date.unique(), reverse=ascending == False):
+    for year in sorted(author_df.var_date.unique()):
         # Find if there is a subset by checking that there are texts of the author on year + gap
         #   but also that there is enough candidates to train (min_candidates)
         # Formula changes if we are doing reverse (late versus early)
+        ascending = gap > 0
         if ascending:
-            condition = (subset.var_date >= (year + gap))
+            condition = (author_df.var_date >= (year + gap))
         else:
-            condition = (subset.var_date <= (year - gap))
-            # Mark gap as negative
-            gap = -abs(gap)
-        print(ascending, gap)
-        if condition.any() and len(set(subset[condition].index.tolist())) >= min_candidates and (subset.var_date == year).any():
+            condition = (author_df.var_date <= (year + gap))
+
+        if condition.any() and len(set(author_df[condition].index.tolist())) >= min_candidates and (author_df.var_date == year).any():
             yield QueryCandidatesImpostors(
                 author=author,
                 gap=gap,
                 year=year,
-                query=subset[subset.var_date == year].copy(),
-                candidate=subset[condition],
-                impostors=impostors
+                query=author_df[author_df.var_date == year].copy(),
+                candidate=author_df[condition].copy().sort_values("var_date", ascending=ascending),
+                impostors=df[df.var_author != author].copy()
             )
 
 
 def extract_all_authors_decade(
         df: pd.DataFrame, general_impostors: pd.DataFrame, features: List[str],
-        ascending: bool = True, gap: int = 5, min_candidates: int = 1,
+        gap: int = 5, min_candidates: int = 1,
         as_pickle: bool = False
 ) -> Iterator[Union[QueryCandidatesImpostors, bytes]]:
     """ Given the dataframe of authors we want to query, we iterate over each available series of texts written at
@@ -58,7 +56,7 @@ def extract_all_authors_decade(
     """
     for author in df.var_author.unique():
         for experiment in extract_author_decade(
-            df, author, ascending, gap, min_candidates
+           df=df, author=author, gap=gap, min_candidates=min_candidates
         ):
             all_subsets = pd.concat(
                 [experiment.impostors, general_impostors, experiment.candidate, experiment.query]
