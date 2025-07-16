@@ -72,7 +72,7 @@ if __name__ == "__main__":
     bar = tqdm.tqdm()
 
     # Now, we extract experiment situation from the author dataset
-    for gap in [1, 5, 10, 15, -1, -5, -10, -15]:
+    for gap in ["random", 1, 5, 10, 15, -1, -5, -10, -15]:
         results = []
         # if os.path.exists(f"results-bdi-{gap}-{ascending}.json"):
         #     continue
