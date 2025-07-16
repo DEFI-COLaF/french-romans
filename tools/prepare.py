@@ -2,6 +2,7 @@ import pandas as pd
 from typing import Optional, Iterator, List, Union
 from dataclasses import dataclass
 from tools.constants import rng
+import numpy as np
 import pickle
 
 
@@ -36,14 +37,16 @@ def extract_author_decade(
         #   but also that there is enough candidates to train (min_candidates)
         # Formula changes if we are doing reverse (late versus early)
         if gap == "random":
-            yield QueryCandidatesImpostors(
-                author=author,
-                gap=gap,
-                year=year,
-                query=author_df[author_df.var_date == year].copy(),
-                candidate=author_df[author_df.var_date != year].copy().sample(max_by_author, random_state=rng),
-                impostors=df[df.var_author != author].copy()
-            )
+            for i in range(3):
+                yield QueryCandidatesImpostors(
+                    author=author,
+                    gap=gap,
+                    year=year,
+                    query=author_df[author_df.var_date == year].copy(),
+                    candidate=author_df[author_df.var_date != year].copy().sample(max_by_author,
+                                                                                  random_state=np.random.default_rng(45*(i+1))),
+                    impostors=df[df.var_author != author].copy()
+                )
         else:
             ascending = gap > 0
             if ascending:
