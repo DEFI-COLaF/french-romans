@@ -1,6 +1,7 @@
 import pandas as pd
 from typing import Optional, Iterator, List, Union
 from dataclasses import dataclass
+from tools.constants import rng
 import pickle
 
 
@@ -16,32 +17,49 @@ class QueryCandidatesImpostors:
 
 
 def extract_author_decade(
-        df: pd.DataFrame, author: str, gap: int = 5,min_candidates: int = 1
+        df: pd.DataFrame, author: str, gap: Union[int, str] = 5, min_candidates: int = 1
 ) -> Iterator[QueryCandidatesImpostors]:
     """ Given the dataframe of authors we want to query, we iterate over each available series of texts written at
     current_work_year + gap (or -gap in descending mode), yielding a QueryCandidatesImpostors"""
     author_df = df[df.var_author == author].copy()
-
+    max_by_author = {
+        "sue": 14,
+        "balzac": 29,
+        "dumas": 29,
+        "verne": 32,
+        "sand": 39,
+        "zola": 47
+    }[author]
     # Iterate over each year
     for year in sorted(author_df.var_date.unique()):
         # Find if there is a subset by checking that there are texts of the author on year + gap
         #   but also that there is enough candidates to train (min_candidates)
         # Formula changes if we are doing reverse (late versus early)
-        ascending = gap > 0
-        if ascending:
-            condition = (author_df.var_date >= (year + gap))
-        else:
-            condition = (author_df.var_date <= (year + gap))
-
-        if condition.any() and len(set(author_df[condition].index.tolist())) >= min_candidates and (author_df.var_date == year).any():
+        if gap == "random":
             yield QueryCandidatesImpostors(
                 author=author,
                 gap=gap,
                 year=year,
                 query=author_df[author_df.var_date == year].copy(),
-                candidate=author_df[condition].copy().sort_values("var_date", ascending=ascending),
+                candidate=author_df[author_df.var_date != year].copy().sample(max_by_author, random_state=rng),
                 impostors=df[df.var_author != author].copy()
             )
+        else:
+            ascending = gap > 0
+            if ascending:
+                condition = (author_df.var_date >= (year + gap))
+            else:
+                condition = (author_df.var_date <= (year + gap))
+
+            if condition.any() and len(set(author_df[condition].index.tolist())) >= min_candidates and (author_df.var_date == year).any():
+                yield QueryCandidatesImpostors(
+                    author=author,
+                    gap=gap,
+                    year=year,
+                    query=author_df[author_df.var_date == year].copy(),
+                    candidate=author_df[condition].copy().sort_values("var_date", ascending=ascending),
+                    impostors=df[df.var_author != author].copy()
+                )
 
 
 def extract_all_authors_decade(

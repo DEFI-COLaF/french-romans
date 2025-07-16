@@ -286,7 +286,7 @@ if __name__ == "__main__":
 
     bar = tqdm.tqdm()
 
-    for gap in [1, 5, 10, 15, -1, -5, -10, -15]:
+    for gap in ["random", 1, 5, 10, 15, -1, -5, -10, -15]:
         # fit transformer once per (gap, direction)
         results: List[Dict[str, Any]] = []
         with ProcessPoolExecutor(max_workers=NB_PROCS) as ex:
