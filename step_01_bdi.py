@@ -17,7 +17,7 @@ from tools import compress
 # Set MIN_Candidates (used either in training set or as candidates for BPI)
 MIN_CANDIDATES = 1
 MAX_NUMBER_OF_SAMPLES = 50
-NB_PROCS = os.getenv("NBPROC", 4)
+NB_PROCS = int(os.getenv("NBPROC", 4))
 
 # Define your subprocessed routine here
 def run_bdi(pickled_experiment: bytes) -> Dict[str, Any]:
